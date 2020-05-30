@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:xd/Screens/HomePage.dart';
 import 'package:xd/Screens/ProductDetails.dart';
 import 'package:xd/konstants.dart';
 import 'CustomProductCard.dart';
@@ -17,7 +16,7 @@ class SliversCustomScrollView extends StatelessWidget {
 class CustomSliverAppBAr extends StatelessWidget {
   const CustomSliverAppBAr({
     Key key,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -37,57 +36,59 @@ class CustomSliverAppBAr extends StatelessWidget {
         ),
         centerTitle: true,
         titlePadding: EdgeInsets.all(0),
-        title: Stack(children: <Widget>[
-          Container(
-            margin: EdgeInsets.only(
-              bottom: 10,
-              left: 5,
-              right: 5,
-            ),
-            height: 35,
-            child: TextField(
-              decoration: InputDecoration(
-                focusColor: Colors.black38,
-                disabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
-                ),
-                fillColor: Colors.white,
-                filled: true,
-                hintStyle: TextStyle(
-                  color: Colors.grey,
-                ),
-                border: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.white,
-                  ),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(2.0),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                SliverAppbarTextfieldicons(
-                  iconData: Icons.search,
-                ),
-                SliverAppbarTextfieldicons(
-                  iconData: Icons.tune,
-                ),
-              ],
-            ),
-          ),
-        ]),
+        title: SliverAppBarTextField(
+          icondata: Icons.search,
+        ),
       ),
       expandedHeight: 200,
     );
+  }
+}
+
+class SliverAppBarTextField extends StatelessWidget {
+  const SliverAppBarTextField({this.container, this.icondata});
+
+  final Widget container;
+  final IconData icondata;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(children: <Widget>[
+      Container(
+        margin: EdgeInsets.only(
+          bottom: 10,
+          left: 5,
+          right: 5,
+        ),
+        height: 40,
+        child: TextField(
+          cursorWidth: 1.5,
+          textAlign: TextAlign.center,
+          decoration: InputDecoration(
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.white, width: 1),
+            ),
+            fillColor: Colors.white,
+            filled: true,
+            hintStyle: TextStyle(color: Colors.grey, fontSize: 9),
+          ),
+        ),
+      ),
+      Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            SliverAppbarTextfieldicons(
+              iconData: icondata,
+            ),
+            SliverAppbarTextfieldicons(
+              iconData: Icons.tune,
+            ),
+          ],
+        ),
+      ),
+    ]);
   }
 }
 
@@ -111,39 +112,43 @@ class SliverListWidget extends StatelessWidget {
       padding: EdgeInsets.all(8),
       sliver: SliverFixedExtentList(
         itemExtent: 150.0,
-        delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
-          return GestureDetector(
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (index) => ProductDetails(),
-                  ));
-            },
-            child: CustomProductCard(
-              price: productThumbsNailsModel[index].price,
-              // description: productThumbnails[index].productDescription,
-              name: productThumbsNailsModel[index].subtitle,
-              box: Container(
-                margin: EdgeInsets.all(8),
-                alignment: Alignment.centerLeft,
-                decoration: BoxDecoration(
-                  //   color: Colors.white,
-                  image: DecorationImage(
-                    fit: BoxFit.scaleDown,
-                    alignment: Alignment.centerLeft,
-                    image: AssetImage(
-                        productThumbsNailsModel[index].productThumbnails),
+        delegate: SliverChildBuilderDelegate(
+          (BuildContext context, int index) {
+            return GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (index) => ProductDetails(),
+                    ));
+              },
+              child: CustomProductCard(
+                price: productThumbsNailsModel[index].price,
+                // description: productThumbnails[index].productDescription,
+                name: productThumbsNailsModel[index].subtitle,
+                box: Container(
+                  margin: EdgeInsets.all(8),
+                  alignment: Alignment.centerLeft,
+                  decoration: BoxDecoration(
+                    //   color: Colors.white,
+                    image: DecorationImage(
+                      fit: BoxFit.scaleDown,
+                      alignment: Alignment.centerLeft,
+                      image: AssetImage(
+                          productThumbsNailsModel[index].productThumbnails),
+                    ),
                   ),
                 ),
               ),
-            ),
-          );
-          //Container(
-          //   alignment: Alignment.center,
-          //   child: Text('List Item $index'),
-          // );
-        }, childCount: productThumbsNailsModel.length),
+            );
+            //Container(
+            //   alignment: Alignment.center,
+            //   child: Text('List Item $index'),
+            // );
+          },
+          childCount: productThumbsNailsModel.length,
+          addAutomaticKeepAlives: true,
+        ),
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:xd/Screens/HomePage.dart';
+import 'package:xd/Screens/categorylist_page.dart';
 import 'package:xd/Widgets/Slivers.dart';
 
 import 'ListItems.dart';
@@ -20,28 +21,38 @@ class SliverCustomScrollView extends StatelessWidget {
           ),
           delegate:
               SliverChildBuilderDelegate((BuildContext context, int index) {
-            return Container(
-              child: Padding(
-                padding: const EdgeInsets.all(5.0),
-                child: Text(
-                  products[index].productSubtitle,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 15,
+            return GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => CategoryListPage(
+                              products: products[index],
+                            )));
+              },
+              child: Container(
+                child: Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: Text(
+                    products[index].productSubtitle,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 15,
+                    ),
                   ),
                 ),
-              ),
-              alignment: Alignment.bottomCenter,
-              decoration: BoxDecoration(
-                border: Border.all(
-                  width: 1.0,
-                  color: Colors.grey.shade300,
-                ),
-                image: DecorationImage(
-                  alignment: Alignment.topCenter,
-                  fit: BoxFit.scaleDown,
-                  image: AssetImage(
-                    products[index].productIcons,
+                alignment: Alignment.bottomCenter,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    width: 1.0,
+                    color: Colors.grey.shade300,
+                  ),
+                  image: DecorationImage(
+                    alignment: Alignment.topCenter,
+                    fit: BoxFit.scaleDown,
+                    image: AssetImage(
+                      products[index].productIcons,
+                    ),
                   ),
                 ),
               ),

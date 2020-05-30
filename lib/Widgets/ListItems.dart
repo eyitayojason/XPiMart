@@ -1,10 +1,11 @@
+import 'package:flutter/material.dart';
+import 'package:xd/konstants.dart';
+
 class ProductsModel {
-  ProductsModel({
-    this.productIcons,
-    this.productSubtitle,
-  });
+  ProductsModel({this.productIcons, this.productSubtitle, this.onTap});
   final String productIcons;
   final String productSubtitle;
+  final Function onTap;
 }
 
 final List products = [
@@ -60,4 +61,55 @@ final List products = [
   ProductsModel(
       productIcons: "assets/images/6_real-estate-logo-clipart_1100-791.png",
       productSubtitle: "Real Estate")
+];
+
+class CategoryListThumbnails {
+  CategoryListThumbnails(
+      {this.productIcons, this.productTitle, this.productSubtitle, this.arrow});
+
+  final IconData arrow;
+  final String productIcons;
+  final String productSubtitle;
+  final String productTitle;
+}
+
+final List vehiclescategorythumb = [
+  CategoryListThumbnails(
+      productIcons: "assets/images/car-png-images-1.png",
+      productTitle: "Cars",
+      productSubtitle: "55436 ads",
+      arrow: Icons.arrow_forward_ios),
+  CategoryListThumbnails(
+      productIcons:
+          "assets/images/car-jeep-tire-motor-vehicle-service-png-favpng-sDyfNRXAcyJ0KU6UntbEqP9c4.png",
+      productTitle: "Vehicle Parts & Accessories",
+      productSubtitle: "17095 ads",
+      arrow: Icons.arrow_forward_ios),
+  CategoryListThumbnails(
+      productIcons: "assets/images/c7aea143f5bde830845eea627c27627c.png",
+      productTitle: "Trucks & Trailers",
+      productSubtitle: "2482 ads",
+      arrow: Icons.arrow_forward_ios),
+  CategoryListThumbnails(
+      productIcons: "assets/images/yellow-and-black-bus-png-clip-art.png",
+      productTitle: "Buses & Microbuses",
+      productSubtitle: "2005 ads",
+      arrow: Icons.arrow_forward_ios),
+  CategoryListThumbnails(
+      productIcons:
+          "assets/images/kisspng-excavator-plant-heavy-machinery-jcb-excavator-5abd34d29dc1e7.7073078715223492666462.png",
+      productTitle: "Heavy Equipment",
+      productSubtitle: "1214 ads",
+      arrow: Icons.arrow_forward_ios),
+  CategoryListThumbnails(
+      productIcons:
+          "assets/images/kisspng-suzuki-hayabusa-motorcycle-orange-mountain-bikes-s-suzuki-hayabusa-sport-motorcycle-bike-5a7415220c2f81.5658031715175570260499.png",
+      productTitle: "Motorcycles & Scooters",
+      productSubtitle: "752 ads",
+      arrow: Icons.arrow_forward_ios),
+  CategoryListThumbnails(
+      productIcons: "assets/images/download.png",
+      productTitle: "Watercraft & Boats",
+      productSubtitle: "235 ads",
+      arrow: Icons.arrow_forward_ios),
 ];
