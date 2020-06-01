@@ -23,10 +23,14 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
-  http: ^0.12.0+2
-  flutter_spinkit: ^3.1.0
+  flutter_spinkit: 
   carousel_slider: ^2.1.0
   outline_material_icons: ^0.1.1
+  provider:
+  flutter_launcher_icons: "^0.7.3"
+  
+
+
 
 
 
@@ -34,6 +38,12 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon/XPI.png"
 
 
 # For information on the generic Dart part of this file, see the
@@ -64,9 +74,9 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   # fonts:
-  #   - family: Schyler
+  #   - family: Lobster 
   #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Lobster-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

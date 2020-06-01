@@ -59,6 +59,10 @@ class MessagePageAppBarButton extends StatelessWidget {
       splashColor: Colors.transparent,
       highlightColor: Colors.transparent,
       onPressed: onPressed,
+      //  () {
+      //             provider.focus2 = true;
+      //             provider.focus1 = false;
+      //           },
       textColor: textColor,
       child: Text(buttonText),
     );

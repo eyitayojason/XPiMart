@@ -1,20 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:xd/Widgets/BottomNavBar.dart';
+import 'package:xd/Widgets/BottomNavProvider.dart';
 import 'package:xd/Widgets/ProfilePageWidgets.dart';
 import 'package:xd/Widgets/Slivers.dart';
 
-class FavoritesPage extends StatefulWidget {
+class FavoritesPage extends StatelessWidget {
   static String id = "Favorites";
-
-  @override
-  _FavoritesPageState createState() => _FavoritesPageState();
-}
-
-class _FavoritesPageState extends State<FavoritesPage> {
-  bool focus1 = false;
-  bool focus2 = false;
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<FavoritesProvider>(context);
     return SafeArea(
       child: Scaffold(
         bottomNavigationBar: BottomNavBar(),
@@ -25,24 +20,18 @@ class _FavoritesPageState extends State<FavoritesPage> {
             Expanded(
               child: MessagePageAppBarButton(
                 buttonText: "Favorites",
-                textColor: focus1 ? Colors.green[300] : Colors.black45,
+                textColor: provider.focus1 ? Colors.green[300] : Colors.black45,
                 onPressed: () {
-                  setState(() {
-                    focus1 = true;
-                    focus2 = false;
-                  });
+                  provider.focusset();
                 },
               ),
             ),
             Expanded(
               child: MessagePageAppBarButton(
                 buttonText: "Subscribing",
-                textColor: focus2 ? Colors.green[300] : Colors.black45,
+                textColor: provider.focus2 ? Colors.green[300] : Colors.black45,
                 onPressed: () {
-                  setState(() {
-                    focus2 = true;
-                    focus1 = false;
-                  });
+                  provider.focusset2();
                 },
               ),
             ),

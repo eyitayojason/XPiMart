@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:xd/Screens/Favorites.dart';
 import 'package:xd/Screens/HomePage.dart';
 import 'package:xd/Screens/MessagesPage.dart';
+import 'package:xd/Screens/PostAdPage.dart';
 import 'package:xd/Screens/ProfilePage.dart';
 import '../konstants.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
 
+import 'BottomNavProvider.dart';
+
 final pages = [
   HomePage(),
   FavoritesPage(),
+  PostAdPage(),
   MessagesPage(),
   ProfilePage(),
 ];
@@ -20,9 +25,17 @@ final items = [
     ),
   ),
   BottomNavigationBarItem(
-    icon: Icon(OMIcons.starBorder),
+    icon: Icon(Icons.star_border),
     title: Text(
       "Favorite",
+    ),
+  ),
+  BottomNavigationBarItem(
+    icon: Icon(
+      OMIcons.addBox,
+    ),
+    title: Text(
+      "Sell",
     ),
   ),
   BottomNavigationBarItem(
@@ -44,6 +57,7 @@ class BottomNavBar extends StatelessWidget {
   final Function onTap;
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<BottomNavigationBarProvider>(context);
     return BottomNavigationBar(
         iconSize: 20,
         elevation: 4,
@@ -56,13 +70,16 @@ class BottomNavBar extends StatelessWidget {
           size: 25,
         ),
         type: BottomNavigationBarType.fixed,
-        currentIndex: selectedpage,
+        currentIndex: provider.currentIndex,
         unselectedIconTheme:
             IconThemeData().copyWith(color: Colors.black, size: 20),
         onTap: (index) {
-          selectedpage = index;
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => pages[selectedpage]));
+          // selectedpage = index;
+          provider.currentIndex = index;
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => pages[provider.currentIndex]));
         },
         items: items);
   }

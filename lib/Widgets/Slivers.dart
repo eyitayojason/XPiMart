@@ -46,10 +46,17 @@ class CustomSliverAppBAr extends StatelessWidget {
 }
 
 class SliverAppBarTextField extends StatelessWidget {
-  const SliverAppBarTextField({this.container, this.icondata});
+  const SliverAppBarTextField({
+    this.iconData,
+    this.container,
+    this.icondata,
+    this.iconData2,
+  });
 
   final Widget container;
   final IconData icondata;
+  final IconData iconData;
+  final IconData iconData2;
 
   @override
   Widget build(BuildContext context) {
@@ -94,13 +101,20 @@ class SliverAppBarTextField extends StatelessWidget {
 
 class SliverAppbarTextfieldicons extends StatelessWidget {
   final IconData iconData;
-  SliverAppbarTextfieldicons({this.iconData});
+
+  SliverAppbarTextfieldicons({
+    this.iconData,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Icon(
-      iconData,
-      color: Colors.green[300],
+    return Row(
+      children: <Widget>[
+        Icon(
+          iconData,
+          color: Colors.green[300],
+        ),
+      ],
     );
   }
 }

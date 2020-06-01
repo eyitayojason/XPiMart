@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:xd/konstants.dart';
 
 class ProductsModel {
   ProductsModel({this.productIcons, this.productSubtitle, this.onTap});

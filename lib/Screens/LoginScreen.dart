@@ -5,23 +5,12 @@ import 'package:xd/Widgets/LoginButtons.dart';
 import '../konstants.dart';
 import 'LoginPage.dart';
 
-class LoginScreen extends StatefulWidget {
-  @override
-  _LoginScreenState createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  void _incrementTab(index) {}
-
+class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        bottomNavigationBar: BottomNavBar(
-          onTap: (index) {
-            _incrementTab(index);
-          },
-        ),
+        bottomNavigationBar: BottomNavBar(),
         body: Container(
           alignment: Alignment.bottomCenter,
           height: double.infinity,
@@ -37,6 +26,24 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
+                Expanded(
+                  flex: 15,
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 300, right: 250),
+                    child: Container(
+                      child: Hero(
+                        tag: "logo",
+                        child: CircleAvatar(
+                          radius: 65,
+                          backgroundColor: Colors.transparent,
+                          backgroundImage: AssetImage(
+                            "assets/images/XPI.png",
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
                 LoginButtons(
                   onTap: () {},
                   height: 40,
