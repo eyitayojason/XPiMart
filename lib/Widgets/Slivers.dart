@@ -3,7 +3,8 @@ import 'package:flutter/rendering.dart';
 import 'package:xd/Screens/ProductDetails.dart';
 import 'package:xd/konstants.dart';
 import 'CustomProductCard.dart';
-import 'ProductThumbsNailModel.dart';
+
+import 'Models/ProductThumbsNailModel.dart';
 import 'SliverCustomScrollView.dart';
 
 class SliversCustomScrollView extends StatelessWidget {
@@ -100,11 +101,11 @@ class SliverAppBarTextField extends StatelessWidget {
 }
 
 class SliverAppbarTextfieldicons extends StatelessWidget {
-  final IconData iconData;
-
   SliverAppbarTextfieldicons({
     this.iconData,
   });
+
+  final IconData iconData;
 
   @override
   Widget build(BuildContext context) {
@@ -170,8 +171,9 @@ class SliverListWidget extends StatelessWidget {
 
 class SliverCard extends StatelessWidget {
   SliverCard({this.subtitle, this.child});
-  final String subtitle;
+
   final Widget child;
+  final String subtitle;
 
   @override
   Widget build(BuildContext context) {
@@ -184,8 +186,9 @@ class SliverCard extends StatelessWidget {
 
 class SliverContainer extends StatelessWidget {
   const SliverContainer({this.child, this.text});
-  final String text;
+
   final Widget child;
+  final String text;
 
   @override
   Widget build(BuildContext context) {

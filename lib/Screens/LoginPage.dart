@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:xd/Widgets/CustomFormField.dart';
-import 'package:xd/Widgets/LoginButtons.dart';
+import 'package:xd/Widgets/Buttons/LoginButtons.dart';
+import 'package:xd/Widgets/FormFieldWidgets/LoginCustomFormField.dart';
 import 'package:xd/konstants.dart';
 import 'HomePage.dart';
 import 'SignUpPage.dart';
@@ -11,7 +11,7 @@ class LoginPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: white,
           elevation: 3.0,
           actions: <Widget>[
             IconButton(
@@ -20,7 +20,7 @@ class LoginPage extends StatelessWidget {
             )
           ],
           iconTheme: IconThemeData().copyWith(
-            color: Colors.green,
+            color: green,
           ),
           title: Text(
             "Sign In",
@@ -36,7 +36,7 @@ class LoginPage extends StatelessWidget {
                 Card(
                   margin: const EdgeInsets.all(20),
                   elevation: 1,
-                  shadowColor: Colors.black,
+                  shadowColor: black,
                   child: Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Column(
@@ -84,7 +84,7 @@ class LoginPage extends StatelessWidget {
                     children: <Widget>[
                       Expanded(
                         child: LoginButtons(
-                          color: Colors.green,
+                          color: green,
                           height: 60,
                           width: 200,
                           onTap: () {
@@ -96,7 +96,7 @@ class LoginPage extends StatelessWidget {
                           text: Text(
                             "Sign In",
                             style: TextStyle(
-                                color: Colors.white,
+                                color: white,
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold),
                           ),
@@ -114,7 +114,7 @@ class LoginPage extends StatelessWidget {
                           onTap: () {},
                           child: Text(
                             "Forgot password?",
-                            style: TextStyle(color: Colors.green),
+                            style: TextStyle(color: green),
                           ),
                         ),
                       ),
@@ -123,7 +123,7 @@ class LoginPage extends StatelessWidget {
                 ),
               ],
             ),
-           kSizedboxh20,
+            kSizedboxh20,
             Center(
               child: GestureDetector(
                 onTap: () {

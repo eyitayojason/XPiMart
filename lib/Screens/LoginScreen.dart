@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:xd/Widgets/BottomNavBar.dart';
-import 'package:xd/Widgets/LoginButtons.dart';
+import 'package:xd/Widgets/Buttons/LoginButtons.dart';
+import 'package:xd/Widgets/NavBarsAppBars/BottomNavBar.dart';
 import '../konstants.dart';
 import 'LoginPage.dart';
 

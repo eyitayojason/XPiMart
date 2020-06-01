@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:xd/Screens/HomePage.dart';
 import 'package:xd/Screens/categorylist_page.dart';
 import 'package:xd/Widgets/Slivers.dart';
-
-import 'ListItems.dart';
+import 'Models/ListItems.dart';
 
 class SliverCustomScrollView extends StatelessWidget {
   @override

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:xd/Widgets/BottomNavBar.dart';
+import 'package:xd/Widgets/Models/ListItems.dart';
+import 'package:xd/Widgets/NavBarsAppBars/BottomNavBar.dart';
 import 'package:xd/Widgets/ProfilePageWidgets.dart';
 import 'package:xd/konstants.dart';
 
@@ -22,7 +23,6 @@ class _MessagesPageState extends State<MessagesPage> {
     });
   }
 
-  @override
   void initState() {
     _dropdownMenuItems = buildDropdownMenuItems(_companies);
     _selectedCompany = _dropdownMenuItems[0].value;
@@ -113,20 +113,5 @@ class _MessagesPageState extends State<MessagesPage> {
         ),
       ),
     );
-  }
-}
-
-class Company {
-  int id;
-  String name;
-
-  Company(this.id, this.name);
-
-  static List<Company> getCompanies() {
-    return <Company>[
-      Company(1, 'All Messages'),
-      Company(2, 'Archived'),
-      Company(3, 'Spam'),
-    ];
   }
 }

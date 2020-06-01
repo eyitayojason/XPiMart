@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:xd/Widgets/BottomNavBar.dart';
+import 'package:xd/Widgets/NavBarsAppBars/BottomNavBar.dart';
+
 import 'package:xd/Widgets/ProfilePageWidgets.dart';
 import 'package:xd/konstants.dart';
 
 class ProfilePage extends StatelessWidget {
   static String id = "ProfilePage";
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(

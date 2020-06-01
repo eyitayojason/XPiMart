@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:xd/Screens/categorylist_page.dart';
-import 'package:xd/Widgets/BottomNavBar.dart';
-import 'package:xd/Widgets/ProductThumbsNailModel.dart';
+import 'package:xd/Widgets/Models/ListItems.dart';
+import 'package:xd/Widgets/Models/ProductThumbsNailModel.dart';
+import 'package:xd/Widgets/NavBarsAppBars/BottomNavBar.dart';
 import 'package:xd/Widgets/Slivers.dart';
-
 import '../konstants.dart';
-import 'MessagesPage.dart';
 
 class CategoryListPage2 extends StatefulWidget {
   CategoryListPage2({this.thumbsNailModel});

@@ -112,3 +112,18 @@ final List vehiclescategorythumb = [
       productSubtitle: "235 ads",
       arrow: Icons.arrow_forward_ios),
 ];
+
+class Company {
+  int id;
+  String name;
+
+  Company(this.id, this.name);
+
+  static List<Company> getCompanies() {
+    return <Company>[
+      Company(1, 'All Messages'),
+      Company(2, 'Archived'),
+      Company(3, 'Spam'),
+    ];
+  }
+}

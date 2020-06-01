@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:xd/Screens/SplashScreen.dart';
-import 'Widgets/BottomNavProvider.dart';
+import 'Widgets/Provider.dart';
 
 void main() => runApp(
       MultiProvider(
@@ -11,6 +11,9 @@ void main() => runApp(
           ),
           ChangeNotifierProvider<FavoritesProvider>(
             create: (context) => FavoritesProvider(),
+          ),
+          ChangeNotifierProvider<PostAdProvider>(
+            create: (context) => PostAdProvider(),
           ),
         ],
         child: MyApp(),

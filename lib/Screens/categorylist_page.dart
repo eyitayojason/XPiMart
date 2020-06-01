@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:xd/Widgets/BottomNavBar.dart';
-import 'package:xd/Widgets/ListItems.dart';
-import 'package:xd/Widgets/ProductThumbsNailModel.dart';
+import 'package:xd/Widgets/Models/ListItems.dart';
+import 'package:xd/Widgets/Models/ProductThumbsNailModel.dart';
+import 'package:xd/Widgets/NavBarsAppBars/BottomNavBar.dart';
 import 'package:xd/Widgets/Slivers.dart';
-
 import 'CategoryListPage2.dart';
 
 class CategoryListPage extends StatelessWidget {

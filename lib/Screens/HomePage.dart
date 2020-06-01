@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:xd/Widgets/BottomNavBar.dart';
+import 'package:xd/Widgets/NavBarsAppBars/BottomNavBar.dart';
 import 'package:xd/Widgets/Slivers.dart';
 import '../konstants.dart';
 
@@ -10,10 +10,9 @@ bool isScrollingDown = false;
 
 bool show = true;
 
-double navBarHeight;
-
 class HomePage extends StatefulWidget {
   static String id = "HomePage";
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -29,14 +28,6 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       selectedpage = index;
     });
-  }
-
-  @override
-  void dispose() {
-    scrollNavBarController.removeListener(() {});
-    super.dispose();
-    // TODO: implement dispose
-    super.dispose();
   }
 
   void showNavBar() {

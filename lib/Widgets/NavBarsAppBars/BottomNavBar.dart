@@ -5,10 +5,10 @@ import 'package:xd/Screens/HomePage.dart';
 import 'package:xd/Screens/MessagesPage.dart';
 import 'package:xd/Screens/PostAdPage.dart';
 import 'package:xd/Screens/ProfilePage.dart';
-import '../konstants.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
 
-import 'BottomNavProvider.dart';
+import '../../konstants.dart';
+import '../Provider.dart';
 
 final pages = [
   HomePage(),

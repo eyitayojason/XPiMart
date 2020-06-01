@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:xd/Widgets/BottomNavBar.dart';
-import 'package:xd/Widgets/BottomNavProvider.dart';
+
+import 'package:xd/Widgets/NavBarsAppBars/BottomNavBar.dart';
 import 'package:xd/Widgets/ProfilePageWidgets.dart';
+import 'package:xd/Widgets/Provider.dart';
 import 'package:xd/Widgets/Slivers.dart';
 
 class FavoritesPage extends StatelessWidget {
   static String id = "Favorites";
+
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<FavoritesProvider>(context);

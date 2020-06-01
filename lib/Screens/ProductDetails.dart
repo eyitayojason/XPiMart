@@ -1,13 +1,16 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
-import 'package:xd/Screens/Favorites.dart';
-import 'package:xd/Widgets/BottomNavBar.dart';
-import 'package:xd/Widgets/CustomFormField.dart';
-import 'package:xd/Widgets/GreenOutLineButtons.dart';
-import 'package:xd/Widgets/ProductThumbsNailModel.dart';
+
+import 'package:xd/Widgets/Buttons/GreenOutLineButtons.dart';
+import 'package:xd/Widgets/FormFieldWidgets/LoginCustomFormField.dart';
+
+import 'package:xd/Widgets/Models/ProductThumbsNailModel.dart';
+import 'package:xd/Widgets/NavBarsAppBars/BottomNavBar.dart';
+
 import 'package:xd/Widgets/Slivers.dart';
 import '../konstants.dart';
+import 'Favorites.dart';
 import 'MessagesPage.dart';
 
 class ProductDetails extends StatelessWidget {

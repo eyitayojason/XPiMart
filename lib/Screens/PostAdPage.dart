@@ -1,34 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:xd/Widgets/BottomNavBar.dart';
+import 'package:xd/Widgets/FormFieldWidgets/TextForm.dart';
+
+import 'package:xd/Widgets/FormfieldWidget.dart';
+import 'package:xd/Widgets/NavBarsAppBars/BottomNavBar.dart';
 
 import '../konstants.dart';
 
-class PostAdPage extends StatefulWidget {
-  @override
-  _PostAdPageState createState() => _PostAdPageState();
-}
+FormFieldWidget formFieldWidget = FormFieldWidget();
 
-class _PostAdPageState extends State<PostAdPage> {
-  List<String> currencies = [
-    "Vehicles & Equipment",
-    "Food",
-    "Elcetronices",
-    "Real Estate",
-    "Services",
-    "Home & Garden",
-    "Fashion",
-    "Miscelleneous"
-  ];
-
-  //bool currentSelectedValue;
-  //String value;
-
+class PostAdPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: white,
           elevation: 3.0,
           actions: <Widget>[
             MaterialButton(
@@ -37,7 +23,7 @@ class _PostAdPageState extends State<PostAdPage> {
             )
           ],
           iconTheme: IconThemeData().copyWith(
-            color: Colors.green,
+            color: green,
           ),
           title: Text(
             "Post New Ad",
@@ -55,111 +41,20 @@ class _PostAdPageState extends State<PostAdPage> {
                 children: <Widget>[
                   FlatButton.icon(
                     padding: EdgeInsets.only(left: 30),
-                    onPressed: () {},
                     label: Text("New Advert"),
                     icon: Icon(
                       Icons.more,
-                      color: Colors.green,
+                      color: green,
                     ),
                   ),
                   kSizedboxh10,
-                  FormField(
-                    builder: (FormFieldState<String> state) {
-                      return DropdownButtonFormField(
-                        items: currencies.map((String category) {
-                          return DropdownMenuItem(
-                            value: category,
-                            child: Text(category),
-                          );
-                        }).toList(),
-                        onChanged: (newValue) {
-                          // do other stuff with _category
-                          setState(() => currencies = newValue);
-                        },
-                        value: currencies[index],
-                        decoration: InputDecoration(
-                          labelText: "Category",
-                          labelStyle:
-                              TextStyle(color: Colors.green, fontSize: 25),
-                          errorStyle: TextStyle(
-                              color: Colors.redAccent, fontSize: 16.0),
-                          hintText: 'Please select expense',
-                          hintStyle:
-                              TextStyle(color: Colors.green, fontSize: 25),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5.0),
-                          ), //   isEmpty: currentSelectedValue == true,
-                          //   isFocused: currentSelectedValue == true,
-                        ),
-                      );
-                    },
-                  ),
+                  formFieldWidget.buildItem(context, index),
                   kSizedboxh20,
                   TextForm(),
                   kSizedboxh20,
-                  FormField(
-                    builder: (FormFieldState<String> state) {
-                      return DropdownButtonFormField(
-                        items: currencies.map((String category) {
-                          return DropdownMenuItem(
-                            value: category,
-                            child: Text(category),
-                          );
-                        }).toList(),
-                        onChanged: (newValue) {
-                          // do other stuff with _category
-                          setState(() => currencies = newValue);
-                        },
-                        value: currencies[index],
-                        decoration: InputDecoration(
-                          labelText: "Region",
-                          labelStyle:
-                              TextStyle(color: Colors.green, fontSize: 25),
-                          errorStyle: TextStyle(
-                              color: Colors.redAccent, fontSize: 16.0),
-                          hintText: 'Please select expense',
-                          hintStyle:
-                              TextStyle(color: Colors.green, fontSize: 25),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5.0),
-                          ), //   isEmpty: currentSelectedValue == true,
-                          //   isFocused: currentSelectedValue == true,
-                        ),
-                      );
-                    },
-                  ),
+                  formFieldWidget.buildItem(context, index),
                   kSizedboxh20,
-                  FormField(
-                    builder: (FormFieldState<String> state) {
-                      return DropdownButtonFormField(
-                        items: currencies.map((String category) {
-                          return DropdownMenuItem(
-                            value: category,
-                            child: Text(category),
-                          );
-                        }).toList(),
-                        onChanged: (newValue) {
-                          // do other stuff with _category
-                          setState(() => currencies = newValue);
-                        },
-                        value: currencies[index],
-                        decoration: InputDecoration(
-                          labelText: "Type",
-                          labelStyle:
-                              TextStyle(color: Colors.green, fontSize: 25),
-                          errorStyle: TextStyle(
-                              color: Colors.redAccent, fontSize: 16.0),
-                          hintText: 'Please select expense',
-                          hintStyle:
-                              TextStyle(color: Colors.green, fontSize: 25),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5.0),
-                          ), //   isEmpty: currentSelectedValue == true,
-                          //   isFocused: currentSelectedValue == true,
-                        ),
-                      );
-                    },
-                  ),
+                  formFieldWidget.buildItem(context, index),
                   kSizedboxh20,
                   TextForm(),
                   kSizedboxh20,
@@ -170,16 +65,16 @@ class _PostAdPageState extends State<PostAdPage> {
                   Row(
                     children: <Widget>[
                       Checkbox(
-                        hoverColor: Colors.green,
+                        hoverColor: green,
                         value: false,
-                        activeColor: Colors.green,
-                        checkColor: Colors.green,
-                        focusColor: Colors.green,
+                        activeColor: green,
+                        checkColor: green,
+                        focusColor: green,
                         onChanged: (value) {},
                       ),
                       Text(
                         "Negotiable",
-                        style: TextStyle(color: Colors.green, fontSize: 15),
+                        style: TextStyle(color: green, fontSize: 15),
                       ),
                     ],
                   ),
@@ -192,7 +87,7 @@ class _PostAdPageState extends State<PostAdPage> {
                       ),
                       Text(
                         "First picture is the title picture. Drag the Photos to change the order",
-                        style: TextStyle(fontSize: 13, color: Colors.grey),
+                        style: TextStyle(fontSize: 13, color: grey),
                       ),
                       kSizedboxh15,
                       Column(
@@ -208,14 +103,14 @@ class _PostAdPageState extends State<PostAdPage> {
                           ),
                           Text(
                             "Add Photos",
-                            style: TextStyle(color: Colors.green),
+                            style: TextStyle(color: green),
                           ),
                         ],
                       ),
                       kSizedboxh20,
                       Text(
                         "Supported formats are .jpg, .gif and .png, Each picture must not exceed 5 Mb",
-                        style: TextStyle(fontSize: 13, color: Colors.grey),
+                        style: TextStyle(fontSize: 13, color: grey),
                       ),
                       kSizedboxh20,
                       TextForm(),
@@ -230,11 +125,11 @@ class _PostAdPageState extends State<PostAdPage> {
                     child: MaterialButton(
                       height: 40,
                       onPressed: () {},
-                      color: Colors.green,
+                      color: green,
                       child: Text(
                         "Post Ad",
                         style: TextStyle(
-                            color: Colors.white,
+                            color: white,
                             fontWeight: FontWeight.w400,
                             fontSize: 20),
                       ),
@@ -244,34 +139,10 @@ class _PostAdPageState extends State<PostAdPage> {
               ),
             ),
             elevation: 2,
-            color: Colors.white,
+            color: white,
           ),
         ),
         bottomNavigationBar: BottomNavBar(),
-      ),
-    );
-  }
-}
-
-class TextForm extends StatelessWidget {
-  const TextForm({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      decoration: InputDecoration(
-        labelText: "Quantity",
-
-        labelStyle: TextStyle(color: Colors.grey, fontSize: 20),
-        errorStyle: TextStyle(color: Colors.redAccent, fontSize: 16.0),
-        //  hintText: 'Please select expense',
-        hintStyle: TextStyle(color: Colors.green, fontSize: 25),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(5.0),
-        ), //   isEmpty: currentSelectedValue == true,
-        //   isFocused: currentSelectedValue == true,
       ),
     );
   }

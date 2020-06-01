@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:xd/Widgets/CustomFormField.dart';
-import 'package:xd/Widgets/LoginButtons.dart';
+import 'package:xd/Widgets/Buttons/LoginButtons.dart';
+import 'package:xd/Widgets/FormFieldWidgets/LoginCustomFormField.dart';
 import '../konstants.dart';
 
 class SignUpPage extends StatelessWidget {
@@ -8,7 +8,7 @@ class SignUpPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: white,
         elevation: 3.0,
         actions: <Widget>[
           IconButton(
@@ -17,7 +17,7 @@ class SignUpPage extends StatelessWidget {
           )
         ],
         iconTheme: IconThemeData().copyWith(
-          color: Colors.green,
+          color: green,
         ),
         title: Text(
           "Sign up",
@@ -32,7 +32,7 @@ class SignUpPage extends StatelessWidget {
             Card(
               margin: const EdgeInsets.all(20),
               elevation: 2,
-              shadowColor: Colors.black,
+              shadowColor: black,
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
@@ -105,7 +105,7 @@ class SignUpPage extends StatelessWidget {
                       height: 10,
                     ),
                     LoginButtons(
-                      color: Colors.green,
+                      color: green,
                       height: 50,
                       onTap: () {},
                       text: Text(

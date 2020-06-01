@@ -7,6 +7,10 @@ int selectedpage = 0;
 const kSizedboxw5 = SizedBox(
   width: 5,
 );
+const green = Colors.green;
+const white = Colors.white;
+const grey = Colors.grey;
+const black = Colors.black;
 const kSizedboxw10 = SizedBox(
   width: 10,
 );
