@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:xd/Widgets/Buttons/LoginButtons.dart';
 import 'package:xd/Widgets/FormFieldWidgets/LoginCustomFormField.dart';
 import 'package:xd/konstants.dart';
-import 'HomePage.dart';
 import 'SignUpPage.dart';
 
 class LoginPage extends StatelessWidget {
@@ -88,10 +87,10 @@ class LoginPage extends StatelessWidget {
                           height: 60,
                           width: 200,
                           onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => HomePage()));
+                            // Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //         builder: (context) => HomePage()));
                           },
                           text: Text(
                             "Sign In",

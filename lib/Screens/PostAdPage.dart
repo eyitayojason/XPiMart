@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:xd/Widgets/FormFieldWidgets/TextForm.dart';
-
 import 'package:xd/Widgets/FormfieldWidget.dart';
 import 'package:xd/Widgets/NavBarsAppBars/BottomNavBar.dart';
-
 import '../konstants.dart';
 
 FormFieldWidget formFieldWidget = FormFieldWidget();

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "795871486723",
+    "firebase_url": "https://xpi-mart.firebaseio.com",
+    "project_id": "xpi-mart",
+    "storage_bucket": "xpi-mart.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:795871486723:android:2a8b2613615fe5e642ff36",
+        "android_client_info": {
+          "package_name": "com.example.xd"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "795871486723-mqpda3b76ovhmugv4jbrap75i1npqpei.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.xd",
+            "certificate_hash": "9153aeed8ac2d64153e532b577bd9a455fba25e1"
+          }
+        },
+        {
+          "client_id": "795871486723-12g0lm3edu4n0p9426s0bpgcsf3v5729.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqNTLfcHwdbjnkTBcf1XCVdKEXxolQ-7w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "795871486723-12g0lm3edu4n0p9426s0bpgcsf3v5729.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

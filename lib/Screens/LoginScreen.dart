@@ -1,13 +1,20 @@
 import 'dart:ui';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:xd/Screens/HomePage.dart';
 import 'package:xd/Widgets/Buttons/LoginButtons.dart';
 import 'package:xd/Widgets/NavBarsAppBars/BottomNavBar.dart';
+import 'package:xd/Widgets/services/Authentication.dart';
 import '../konstants.dart';
 import 'LoginPage.dart';
+
+Authentication authentication = Authentication();
 
 class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<Authentication>(context);
     return SafeArea(
       child: Scaffold(
         bottomNavigationBar: BottomNavBar(),
@@ -45,7 +52,22 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
                 LoginButtons(
-                  onTap: () {},
+                  onTap: () async {
+                    await provider
+                        .handleSignIn()
+                        .whenComplete(
+                          () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => HomePage(),
+                              ),
+                            );
+                          },
+                        )
+                        .then((FirebaseUser user) => print(user))
+                        .catchError((e) => print(e));
+                  },
                   height: 40,
                   width: 350,
                   text: Text(
@@ -59,6 +81,9 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
                 LoginButtons(
+                  onTap: () {
+                    provider.signOutGoogle();
+                  },
                   height: 40,
                   width: 350,
                   icons: Icon(

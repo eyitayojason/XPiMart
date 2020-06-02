@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:xd/Screens/SplashScreen.dart';
 import 'Widgets/Provider.dart';
+import 'Widgets/services/Authentication.dart';
 
 void main() => runApp(
       MultiProvider(
@@ -14,6 +15,9 @@ void main() => runApp(
           ),
           ChangeNotifierProvider<PostAdProvider>(
             create: (context) => PostAdProvider(),
+          ),
+          ChangeNotifierProvider<Authentication>(
+            create: (context) => Authentication(),
           ),
         ],
         child: MyApp(),
