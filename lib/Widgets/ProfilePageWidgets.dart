@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../konstants.dart';
 
 class ProfilePageFlatButton extends StatelessWidget {
   const ProfilePageFlatButton({this.text});

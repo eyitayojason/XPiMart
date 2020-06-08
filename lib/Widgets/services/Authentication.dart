@@ -9,8 +9,8 @@ import 'package:xd/Screens/LoginPage.dart';
 class Authentication with ChangeNotifier {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  bool _success;
-  String _userEmail;
+  bool success;
+  String userEmail;
   Future<FirebaseUser> signInWithEmailAndPassword() async {
     final FirebaseUser user = (await _auth.signInWithEmailAndPassword(
       email: LoginPage.emailController.text,
@@ -18,13 +18,14 @@ class Authentication with ChangeNotifier {
     ))
         .user;
     if (user != null) {
-      _success = true;
-      _userEmail = user.email;
+      success = true;
+      userEmail = user.email;
     } else {
-      _success = false;
+      success = false;
     }
     print(user.phoneNumber);
     notifyListeners();
+    return null;
   }
 
   Future<FirebaseUser> handleSignIn() async {

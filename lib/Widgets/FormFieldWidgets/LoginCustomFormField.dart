@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:xd/Screens/LoginScreen.dart';
-import 'package:xd/VALIDATION/SignupValidation.dart';
-import 'package:xd/Widgets/services/Authentication.dart';
 
 class CustomFormField extends StatelessWidget {
   final String hintText;

@@ -3,7 +3,6 @@ import 'package:xd/Screens/HomePage.dart';
 import 'package:xd/Screens/categorylist_page.dart';
 import 'package:xd/Widgets/Slivers.dart';
 import 'Models/ListItems.dart';
-import 'package:provider/provider.dart';
 
 class SliverCustomScrollView extends StatelessWidget {
   @override

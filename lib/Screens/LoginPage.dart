@@ -11,12 +11,11 @@ import 'package:xd/konstants.dart';
 import 'HomePage.dart';
 import 'SignUpPage.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 String email;
 String password;
 
-final FirebaseAuth _auth = FirebaseAuth.instance;
+//final FirebaseAuth _auth = FirebaseAuth.instance;
 
 class LoginPage extends StatelessWidget {
   static final TextEditingController emailController = TextEditingController();

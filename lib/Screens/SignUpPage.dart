@@ -160,7 +160,8 @@ class SignUpPage extends StatelessWidget {
                           height: 50,
                           onTap: () async {
                             provider.showspinner();
-                            final newUser = await _auth
+                            //final newUser =
+                            await _auth
                                 .createUserWithEmailAndPassword(
                                     email: email, password: password)
                                 .whenComplete(() {

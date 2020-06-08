@@ -4,7 +4,6 @@ import 'package:xd/Screens/SplashScreen.dart';
 import 'package:xd/VALIDATION/SignupValidation.dart';
 import 'Widgets/Provider.dart';
 import 'Widgets/services/Authentication.dart';
-import 'Screens/HomePage.dart';
 
 void main() => runApp(
       MultiProvider(
