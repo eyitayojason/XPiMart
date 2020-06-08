@@ -13,7 +13,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer(
-        Duration(seconds: 10),
+        Duration(seconds: 5),
         () => Navigator.push(
             context, MaterialPageRoute(builder: (context) => LoginScreen())));
   }
@@ -25,37 +25,12 @@ class _SplashScreenState extends State<SplashScreen> {
         body: Stack(
           fit: StackFit.expand,
           children: <Widget>[
-            Hero(
-              tag: "logo",
-              child: Container(
-                alignment: Alignment.bottomCenter,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                  alignment: Alignment.bottomCenter,
-                  image: AssetImage(
-                    "assets/images/XPI.png",
-                  ),
-                  fit: BoxFit.scaleDown,
-                )),
-              ),
-            ),
             Center(
               child: SpinKitWave(
-                color: Colors.white,
+                color: Colors.orangeAccent,
                 size: 100,
               ),
             ),
-            // Container(
-            //   padding: EdgeInsets.only(bottom: 50),
-            //   child: Text(
-            //     "Welcome To XPI Mart",
-            //     style: TextStyle(
-            //         color: Colors.,
-            //         fontSize: 30,
-            //         fontFamily: "Schyler"),
-            //   ),
-            //   alignment: Alignment.bottomCenter,
-            // )
           ],
         ),
       ),

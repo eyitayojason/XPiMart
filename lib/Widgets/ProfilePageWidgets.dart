@@ -10,33 +10,14 @@ class ProfilePageFlatButton extends StatelessWidget {
       onPressed: () {},
       child: Text(
         text,
-        style: kProfilePageButtonText,
+        style: TextStyle(color: Colors.white, fontSize: 12),
       ),
       color: Colors.green,
     );
   }
 }
 
-class ProfileText extends StatelessWidget {
-  const ProfileText({this.text});
-  final String text;
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: kbottomText2,
-      textAlign: TextAlign.start,
-      textDirection: TextDirection.ltr,
-    );
-  }
-}
-
 class ErrorImage extends StatelessWidget {
-  const ErrorImage({
-    Key key,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Image.asset(

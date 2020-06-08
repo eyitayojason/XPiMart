@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 
 class LoginButtons extends StatelessWidget {
-  const LoginButtons(
-      {this.icons, this.onTap, this.text, this.color, this.height, this.width});
+  LoginButtons({
+    this.icons,
+    this.onTap,
+    this.text,
+    this.color,
+    this.height,
+    this.width,
+  });
 
   final Icon icons;
   final Text text;
@@ -10,6 +16,7 @@ class LoginButtons extends StatelessWidget {
   final Function onTap;
   final double height;
   final double width;
+  static bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {

@@ -46,6 +46,7 @@ class _MessagesPageState extends State<MessagesPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.white,
         bottomNavigationBar: BottomNavBar(),
         appBar: AppBar(
           backgroundColor: Colors.white,

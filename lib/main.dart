@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:xd/Screens/SplashScreen.dart';
+import 'package:xd/VALIDATION/SignupValidation.dart';
 import 'Widgets/Provider.dart';
 import 'Widgets/services/Authentication.dart';
+import 'Screens/HomePage.dart';
 
 void main() => runApp(
       MultiProvider(
@@ -18,6 +20,9 @@ void main() => runApp(
           ),
           ChangeNotifierProvider<Authentication>(
             create: (context) => Authentication(),
+          ),
+          ChangeNotifierProvider<Validation>(
+            create: (context) => Validation(),
           ),
         ],
         child: MyApp(),
