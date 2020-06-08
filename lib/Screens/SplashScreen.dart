@@ -13,7 +13,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer(
-        Duration(seconds: 5),
+        Duration(seconds: 3),
         () => Navigator.push(
             context, MaterialPageRoute(builder: (context) => LoginScreen())));
   }
@@ -27,7 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
           children: <Widget>[
             Center(
               child: SpinKitWave(
-                color: Colors.orangeAccent,
+                color: Colors.greenAccent,
                 size: 100,
               ),
             ),

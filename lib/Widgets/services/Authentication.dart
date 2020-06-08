@@ -5,26 +5,51 @@ import 'package:xd/Screens/LoginScreen.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:xd/Screens/ProfilePage.dart';
 import 'package:xd/Screens/LoginPage.dart';
+import 'package:xd/Screens/SignUpPage.dart';
 
 class Authentication with ChangeNotifier {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  bool success;
+  bool success = false;
   String userEmail;
   Future<FirebaseUser> signInWithEmailAndPassword() async {
-    final FirebaseUser user = (await _auth.signInWithEmailAndPassword(
-      email: LoginPage.emailController.text,
-      password: LoginPage.passwordController.text,
-    ))
-        .user;
-    if (user != null) {
-      success = true;
-      userEmail = user.email;
-    } else {
-      success = false;
+    try {
+      final FirebaseUser user = (await _auth.signInWithEmailAndPassword(
+        email: LoginPage.emailController.text,
+        password: LoginPage.passwordController.text,
+      ))
+          .user;
+      if (user != null) {
+        success = true;
+        userEmail = user.email;
+      } else {
+        success = false;
+      }
+      print(user.uid);
+      notifyListeners();
+    } catch (e) {
+      print(e);
     }
-    print(user.phoneNumber);
-    notifyListeners();
+    return null;
+  }
+
+  Future<FirebaseUser> signUp() async {
+    try {
+      final FirebaseUser newUser = (await _auth.createUserWithEmailAndPassword(
+              email: SignUpPage.emailController.text,
+              password: SignUpPage.passwordController.text))
+          .user;
+      if (newUser != null) {
+        success = true;
+        userEmail = newUser.email;
+      } else {
+        success = false;
+      }
+      print(newUser.email);
+      notifyListeners();
+    } catch (e) {
+      print(e);
+    }
     return null;
   }
 

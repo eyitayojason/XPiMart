@@ -6,52 +6,56 @@ import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:provider/provider.dart';
 import 'package:xd/Screens/LoginPage.dart';
 import 'package:xd/Screens/LoginScreen.dart';
+import 'package:xd/VALIDATION/SignupValidation.dart';
 import 'package:xd/Widgets/Buttons/LoginButtons.dart';
 import 'package:xd/Widgets/FormFieldWidgets/LoginCustomFormField.dart';
 import 'package:xd/Widgets/services/Authentication.dart';
 import '../konstants.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
-String email;
-String password;
-String firstName;
-String lastName;
-String pHoneNumber;
-//bool showSpinner = false;
 LoginScreen loginScreen = LoginScreen();
 
 class SignUpPage extends StatelessWidget {
+  static final TextEditingController emailController = TextEditingController();
+  static final TextEditingController passwordController =
+      TextEditingController();
+  static final TextEditingController firstnameController =
+      TextEditingController();
+  static final TextEditingController lastnameController =
+      TextEditingController();
+  static final TextEditingController phoneController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<Authentication>(context);
+    var validate = Provider.of<Validation>(context);
     return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: white,
-          elevation: 3.0,
-          actions: <Widget>[
-            IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.more_vert),
-            )
-          ],
-          iconTheme: IconThemeData().copyWith(
-            color: green,
-          ),
-          title: Text(
-            "Sign up",
-            style: kappBarText,
-          ),
+      child: ModalProgressHUD(
+        inAsyncCall: LoginScreen.showSpinner,
+        opacity: 0.5,
+        color: Colors.black,
+        progressIndicator: SpinKitChasingDots(
+          color: Colors.redAccent,
+          size: 90,
         ),
-        body: ModalProgressHUD(
-          inAsyncCall: LoginScreen.showSpinner,
-          opacity: 0.5,
-          color: Colors.black,
-          progressIndicator: SpinKitChasingDots(
-            color: Colors.redAccent,
-            size: 90,
+        child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: white,
+            elevation: 3.0,
+            actions: <Widget>[
+              IconButton(
+                onPressed: () {},
+                icon: Icon(Icons.more_vert),
+              )
+            ],
+            iconTheme: IconThemeData().copyWith(
+              color: green,
+            ),
+            title: Text(
+              "Sign up",
+              style: kappBarText,
+            ),
           ),
-          child: ListView(children: <Widget>[
+          body: ListView(children: <Widget>[
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -76,75 +80,69 @@ class SignUpPage extends StatelessWidget {
                       children: <Widget>[
                         Text(
                           "Register New User",
-                          style: kbottomText4,
+                          style: kbottomText4.copyWith(fontSize: 20),
                         ),
-                        SizedBox(
-                          height: 10,
+                        kSizedboxh10,
+                        Divider(
+                          color: Colors.green.shade200,
                         ),
-                        Container(
-                          height: 1,
-                          width: double.infinity,
-                          color: Colors.black12,
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
+                        kSizedboxh20,
                         CustomFormField(
-                          onChanged: (value) {
-                            email = value;
+                          controller: emailController,
+                          onChanged: (String value) {
+                            validate.validateEmail(value);
                           },
+                          errorText: validate.email.error,
                           hidePassword: false,
                           hintText: "Email / Phone",
                         ),
-                        SizedBox(
-                          height: 20,
-                        ),
+                        kSizedboxh20,
                         CustomFormField(
-                          onChanged: (value) {
-                            password = value;
+                          errorText: validate.password.error,
+                          controller: passwordController,
+                          onChanged: (String value) {
+                            validate.validatePassword(value);
                           },
                           hintText: "Password",
                           hidePassword: true,
                         ),
-                        SizedBox(
-                          height: 20,
-                        ),
+                        kSizedboxh20,
                         Text(
                           "Never disclose your password to anyone",
                           style: TextStyle(color: Colors.black38, fontSize: 10),
                         ),
-                        SizedBox(
-                          height: 30,
-                        ),
+                        kSizedboxh20,
                         CustomFormField(
-                          onChanged: (value) {
-                            firstName = value;
+                          controller: firstnameController,
+                          errorText: validate.firstName.error,
+                          onChanged: (String value) {
+                            validate.validatefirstName(value);
                           },
                           hidePassword: false,
                           hintText: "First name",
                         ),
-                        SizedBox(
-                          height: 20,
-                        ),
+                        kSizedboxh20,
                         CustomFormField(
+                          errorText: validate.lastName.error,
+                          controller: lastnameController,
                           hidePassword: false,
                           hintText: "Last Name",
-                          onChanged: (value) {
-                            lastName = value;
+                          onChanged: (String value) {
+                            validate.validatelastName(value);
                           },
                         ),
-                        SizedBox(
-                          height: 20,
-                        ),
+                        kSizedboxh20,
                         CustomFormField(
+                          errorText: validate.phoneNumber.error,
+                          controller: phoneController,
                           hidePassword: false,
                           hintText: "Phone Number",
-                          onChanged: (value) {
-                            pHoneNumber = value;
+                          onChanged: (String value) {
+                            validate.validatePhone(value);
                           },
                         ),
                         SizedBox(
-                          height: 10,
+                          height: 50,
                         ),
                         RichText(
                           text: TextSpan(
@@ -152,22 +150,24 @@ class SignUpPage extends StatelessWidget {
                                   "By Continuing you agree to the Policy and Rules",
                               style: kbottomText3),
                         ),
-                        SizedBox(
-                          height: 10,
-                        ),
+                        kSizedboxh10,
                         LoginButtons(
                           color: green,
                           height: 50,
                           onTap: () async {
-                            provider.showspinner();
-                            //final newUser =
-                            await _auth
-                                .createUserWithEmailAndPassword(
-                                    email: email, password: password)
-                                .whenComplete(() {
-                              showSubmitRequestSnackBar(context);
-                            });
-                            provider.stopSpinner();
+                            try {
+                              if (validate.isValid == true) {
+                                provider.showspinner();
+                                provider.signUp().whenComplete(() {
+                                  provider.stopSpinner();
+                                  provider.success
+                                      ? showSuccessSnackBar(context)
+                                      : showFailedSnackBar(context);
+                                });
+                              } else {}
+                            } catch (e) {
+                              print(e);
+                            }
                           },
                           text: Text(
                             "Register",
@@ -189,7 +189,7 @@ class SignUpPage extends StatelessWidget {
   }
 }
 
-showSubmitRequestSnackBar(BuildContext context) async {
+showSuccessSnackBar(BuildContext context) async {
   Flushbar(
     flushbarPosition: FlushbarPosition.BOTTOM,
     message: "Registration Complete, Proceed to LOGIN",
@@ -209,4 +209,22 @@ showSubmitRequestSnackBar(BuildContext context) async {
         ),
       ),
     );
+}
+
+showFailedSnackBar(BuildContext context) async {
+  var provider = Provider.of<Authentication>(context, listen: false);
+  Flushbar(
+    flushbarPosition: FlushbarPosition.BOTTOM,
+    message: "Registration Failed, Please Try Again",
+    icon: Icon(
+      Icons.info_outline,
+      size: 28.0,
+      color: Colors.red,
+    ),
+    backgroundColor: Colors.green,
+    duration: Duration(seconds: 3),
+    leftBarIndicatorColor: Colors.green,
+  )..show(context).then((context) => {}).whenComplete(() {
+      provider.stopSpinner();
+    });
 }

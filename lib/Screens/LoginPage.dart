@@ -26,33 +26,33 @@ class LoginPage extends StatelessWidget {
     var provider = Provider.of<Authentication>(context);
     var validate = Provider.of<Validation>(context);
     return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: white,
-          elevation: 3.0,
-          actions: <Widget>[
-            IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.more_vert),
-            )
-          ],
-          iconTheme: IconThemeData().copyWith(
-            color: green,
-          ),
-          title: Text(
-            "Sign In",
-            style: kappBarText,
-          ),
+      child: ModalProgressHUD(
+        inAsyncCall: LoginScreen.showSpinner,
+        opacity: 0.5,
+        color: Colors.black,
+        progressIndicator: SpinKitChasingDots(
+          color: Colors.blue,
+          size: 90,
         ),
-        body: ModalProgressHUD(
-          inAsyncCall: LoginScreen.showSpinner,
-          opacity: 0.5,
-          color: Colors.black,
-          progressIndicator: SpinKitChasingDots(
-            color: Colors.blue,
-            size: 90,
+        child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: white,
+            elevation: 3.0,
+            actions: <Widget>[
+              IconButton(
+                onPressed: () {},
+                icon: Icon(Icons.more_vert),
+              )
+            ],
+            iconTheme: IconThemeData().copyWith(
+              color: green,
+            ),
+            title: Text(
+              "Sign In",
+              style: kappBarText,
+            ),
           ),
-          child: ListView(
+          body: ListView(
             children: <Widget>[
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -81,9 +81,7 @@ class LoginPage extends StatelessWidget {
                             width: double.infinity,
                             color: Colors.black12,
                           ),
-                          SizedBox(
-                            height: 20,
-                          ),
+                          kSizedboxh20,
                           CustomFormField(
                             controller: emailController,
                             onChanged: (String value) {
@@ -93,20 +91,17 @@ class LoginPage extends StatelessWidget {
                             hidePassword: false,
                             hintText: "Email / Phone",
                           ),
-                          SizedBox(
-                            height: 20,
-                          ),
+                          kSizedboxh20,
                           CustomFormField(
                             controller: passwordController,
-                            onChanged: (value) {
-                              password = value;
+                            onChanged: (String value) {
+                              validate.validatePassword(value);
                             },
                             hintText: "Password",
+                            errorText: validate.password.error,
                             hidePassword: true,
                           ),
-                          SizedBox(
-                            height: 20,
-                          ),
+                          kSizedboxh20,
                           Text(
                             "Never disclose your password to anyone",
                             style:
@@ -128,40 +123,17 @@ class LoginPage extends StatelessWidget {
                             height: 60,
                             width: 200,
                             onTap: () async {
-                              // provider.showspinner();
-                              // final signInUser = await _auth
-                              //     .signInWithEmailAndPassword(
-                              //         email: email, password: password)
-                              //     .whenComplete(() {
-                              // Navigator.push(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //     builder: (context) => HomePage(),
-                              //   ),
-                              // );
-                              //   provider.stopSpinner();
-                              // });
-                              provider.showspinner();
-                              provider
-                                  .signInWithEmailAndPassword()
-                                  .whenComplete(() {
-                                provider.stopSpinner();
-                                showSubmitRequestSnackBar(context);
-                              });
-
-                              // if (user != null) {
-                              //   Scaffold.of(context)
-                              //       .showSnackBar(const SnackBar(
-                              //     content: Text('No one has signed in.'),
-                              //   ));
-                              //   return;
-                              // }
-                              // provider.logOut();
-                              // final String uid = user.uid;
-                              // Scaffold.of(context).showSnackBar(SnackBar(
-                              //   content:
-                              //       Text(uid + ' has successfully signed out.'),
-                              // ));
+                              if (validate.isValid == true) {
+                                provider.showspinner();
+                                provider
+                                    .signInWithEmailAndPassword()
+                                    .whenComplete(() {
+                                  provider.stopSpinner();
+                                  provider.success
+                                      ? showSucessSnackBar(context)
+                                      : showLoginFailedSnackBar(context);
+                                });
+                              } else {}
                             },
                             text: Text(
                               "Sign In",
@@ -218,11 +190,11 @@ class LoginPage extends StatelessWidget {
   }
 }
 
-showSubmitRequestSnackBar(BuildContext context) async {
+showSucessSnackBar(BuildContext context) async {
   var provider = Provider.of<Authentication>(context, listen: false);
   Flushbar(
     flushbarPosition: FlushbarPosition.TOP,
-    message: "Welcome New User",
+    message: "Welcome$email",
     showProgressIndicator: true,
     flushbarStyle: FlushbarStyle.FLOATING,
     blockBackgroundInteraction: true,
@@ -244,6 +216,26 @@ showSubmitRequestSnackBar(BuildContext context) async {
       ),
     )
         .whenComplete(() {
+      provider.stopSpinner();
+    });
+}
+
+showLoginFailedSnackBar(BuildContext context) async {
+  var provider = Provider.of<Authentication>(context, listen: false);
+  Flushbar(
+    flushbarPosition: FlushbarPosition.BOTTOM,
+    message: "Login Failed Try Again",
+    flushbarStyle: FlushbarStyle.GROUNDED,
+    blockBackgroundInteraction: true,
+    icon: Icon(
+      Icons.info_outline,
+      size: 28.0,
+      color: Colors.red,
+    ),
+    backgroundColor: Colors.green,
+    duration: Duration(seconds: 3),
+    leftBarIndicatorColor: Colors.green,
+  )..show(context).then((contex) => {}).whenComplete(() {
       provider.stopSpinner();
     });
 }
