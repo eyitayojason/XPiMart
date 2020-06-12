@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -12,10 +11,11 @@ import 'package:xd/Widgets/FormFieldWidgets/LoginCustomFormField.dart';
 import 'package:xd/Widgets/services/Authentication.dart';
 import '../konstants.dart';
 
-final FirebaseAuth _auth = FirebaseAuth.instance;
 LoginScreen loginScreen = LoginScreen();
 
 class SignUpPage extends StatelessWidget {
+  static const id = "SignUpPage";
+
   static final TextEditingController emailController = TextEditingController();
   static final TextEditingController passwordController =
       TextEditingController();
@@ -201,14 +201,7 @@ showSuccessSnackBar(BuildContext context) async {
     backgroundColor: Colors.green,
     duration: Duration(seconds: 3),
     leftBarIndicatorColor: Colors.green,
-  )..show(context).then(
-      (r) => Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => LoginPage(),
-        ),
-      ),
-    );
+  )..show(context).then((r) => Navigator.pushNamed(context, LoginPage.id));
 }
 
 showFailedSnackBar(BuildContext context) async {

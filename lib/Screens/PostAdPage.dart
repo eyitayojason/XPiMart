@@ -7,6 +7,7 @@ import '../konstants.dart';
 FormFieldWidget formFieldWidget = FormFieldWidget();
 
 class PostAdPage extends StatelessWidget {
+  static const id = "PostAdPage";
   @override
   Widget build(BuildContext context) {
     return SafeArea(

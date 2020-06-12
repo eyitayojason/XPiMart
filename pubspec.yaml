@@ -26,13 +26,13 @@ dependencies:
   flutter_spinkit: 
   carousel_slider: ^2.1.0
   outline_material_icons: ^0.1.1
-  provider:
-  flutter_launcher_icons: "^0.7.3"
+  provider: ^4.1.3
+  flutter_launcher_icons: ^0.7.3
 
   firebase_auth: ^0.16.1 
   firebase_core: ^0.4.5
 
-  modal_progress_hud: 
+  modal_progress_hud:  ^0.1.3
   cloud_firestore: ^0.13.6
   google_sign_in: ^4.5.1
 

@@ -10,10 +10,13 @@ import '../konstants.dart';
 import 'LoginPage.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 
+import 'SignUpPage.dart';
+
 Authentication authentication = Authentication();
 LoginButtons loginButtons = LoginButtons();
 
 class LoginScreen extends StatelessWidget {
+  static const id = "LoginScreen";
   static bool showSpinner = false;
   @override
   Widget build(BuildContext context) {
@@ -60,12 +63,7 @@ class LoginScreen extends StatelessWidget {
                           provider.showspinner();
                           await provider.handleSignIn().whenComplete(
                             () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => HomePage(),
-                                ),
-                              );
+                              Navigator.pushNamed(context, HomePage.id);
                               provider.stopSpinner();
                             },
                           );
@@ -86,11 +84,7 @@ class LoginScreen extends StatelessWidget {
                         onTap: () {
                           provider.showspinner();
                           provider.login().whenComplete(() {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => HomePage(),
-                                ));
+                            Navigator.pushNamed(context, HomePage.id);
                             provider.stopSpinner();
                           });
                         },
@@ -119,26 +113,22 @@ class LoginScreen extends StatelessWidget {
                           style: kButtonTextStyle,
                         ),
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => LoginPage(),
-                            ),
-                          );
+                          Navigator.pushNamed(context, LoginPage.id);
                         },
                       ),
-                      SizedBox(
-                        height: 10,
+                      kSizedboxh10,
+                      InkWell(
+                        onTap: () =>
+                            Navigator.pushNamed(context, SignUpPage.id),
+                        child: RichText(
+                          text: TextSpan(
+                              text: "Dont have an account? ",
+                              children: [
+                                TextSpan(text: "Sign Up", style: kbottomText),
+                              ]),
+                        ),
                       ),
-                      RichText(
-                        text:
-                            TextSpan(text: "Dont have an account? ", children: [
-                          TextSpan(text: "Sign Up", style: kbottomText),
-                        ]),
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
+                      kSizedboxh15,
                       Flexible(
                         child: RichText(
                           text: TextSpan(

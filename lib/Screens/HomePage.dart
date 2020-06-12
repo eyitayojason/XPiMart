@@ -9,7 +9,8 @@ bool isScrollingDown = false;
 bool show = true;
 
 class HomePage extends StatefulWidget {
-  static HomePage id = HomePage();
+  // static HomePage id = HomePage();
+  static const id = "HomePage";
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -67,7 +68,7 @@ class _HomePageState extends State<HomePage> {
               children: <Widget>[BottomNavBar()],
             ),
           ),
-          body: SliversCustomScrollView()),
+          body: SliverCustomScrollView()),
     );
   }
 }

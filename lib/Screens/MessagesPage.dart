@@ -5,7 +5,7 @@ import 'package:xd/Widgets/ProfilePageWidgets.dart';
 import 'package:xd/konstants.dart';
 
 class MessagesPage extends StatefulWidget {
-  static String id = "MessagesPage";
+  static const id = "MessagesPage";
   @override
   _MessagesPageState createState() => _MessagesPageState();
 }

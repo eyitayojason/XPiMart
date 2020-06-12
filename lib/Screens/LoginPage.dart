@@ -18,6 +18,7 @@ String password;
 //final FirebaseAuth _auth = FirebaseAuth.instance;
 
 class LoginPage extends StatelessWidget {
+  static const id = "LoginPage";
   static final TextEditingController emailController = TextEditingController();
   static final TextEditingController passwordController =
       TextEditingController();
@@ -169,8 +170,7 @@ class LoginPage extends StatelessWidget {
               Center(
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => SignUpPage()));
+                    Navigator.pushNamed(context, SignUpPage.id);
                   },
                   child: RichText(
                     text: TextSpan(
@@ -207,14 +207,7 @@ showSucessSnackBar(BuildContext context) async {
     duration: Duration(seconds: 3),
     leftBarIndicatorColor: Colors.green,
   )..show(context)
-        .then(
-      (r) => Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => HomePage.id,
-        ),
-      ),
-    )
+        .then((r) => Navigator.pushNamed(context, HomePage.id))
         .whenComplete(() {
       provider.stopSpinner();
     });
@@ -232,10 +225,24 @@ showLoginFailedSnackBar(BuildContext context) async {
       size: 28.0,
       color: Colors.red,
     ),
-    backgroundColor: Colors.green,
+    backgroundColor: green,
     duration: Duration(seconds: 3),
-    leftBarIndicatorColor: Colors.green,
+    leftBarIndicatorColor: green,
   )..show(context).then((contex) => {}).whenComplete(() {
       provider.stopSpinner();
     });
 }
+//  Flushbar(
+//     flushbarPosition: FlushbarPosition.BOTTOM,
+//     message: "Login Failed Try Again",
+//     flushbarStyle: FlushbarStyle.GROUNDED,
+//     blockBackgroundInteraction: true,
+//     icon: Icon(
+//       Icons.info_outline,
+//       size: 28.0,
+//       color: Colors.red,
+//     ),
+//     backgroundColor: Colors.green,
+//     duration: Duration(seconds: 3),
+//     leftBarIndicatorColor: Colors.green,
+//   )

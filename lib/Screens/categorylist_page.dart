@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:xd/Widgets/Models/ListItems.dart';
-import 'package:xd/Widgets/Models/ProductThumbsNailModel.dart';
 import 'package:xd/Widgets/NavBarsAppBars/BottomNavBar.dart';
 import 'package:xd/Widgets/Slivers.dart';
 import 'CategoryListPage2.dart';
 
 class CategoryListPage extends StatelessWidget {
-  CategoryListPage({@required this.products});
+  static const id = "CategoryListPage";
+
+  CategoryListPage({this.products});
 
   final ProductsModel products;
 
@@ -23,12 +24,7 @@ class CategoryListPage extends StatelessWidget {
                   SliverChildBuilderDelegate((BuildContext context, int index) {
                 return ListTile(
                   onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => CategoryListPage2(
-                                  thumbsNailModel: ThumbsNailModel(),
-                                )));
+                    Navigator.pushNamed(context, CategoryListPage2.id);
                   },
                   contentPadding:
                       EdgeInsets.symmetric(vertical: 5, horizontal: 20),

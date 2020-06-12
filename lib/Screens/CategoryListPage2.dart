@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:xd/Screens/categorylist_page.dart';
 import 'package:xd/Widgets/Models/ListItems.dart';
-import 'package:xd/Widgets/Models/ProductThumbsNailModel.dart';
 import 'package:xd/Widgets/NavBarsAppBars/BottomNavBar.dart';
 import 'package:xd/Widgets/Slivers.dart';
 import '../konstants.dart';
 
 class CategoryListPage2 extends StatefulWidget {
-  CategoryListPage2({this.thumbsNailModel});
+  // CategoryListPage2({this.thumbsNailModel});
+  static const id = "CategoryListPage2";
 
-  final ThumbsNailModel thumbsNailModel;
+  //final ThumbsNailModel thumbsNailModel;
 
   @override
   _CategoryListPage2State createState() => _CategoryListPage2State();
