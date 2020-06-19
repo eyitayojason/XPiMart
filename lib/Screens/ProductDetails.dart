@@ -1,19 +1,28 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
 import 'package:xd/Widgets/Buttons/GreenOutLineButtons.dart';
 import 'package:xd/Widgets/FormFieldWidgets/LoginCustomFormField.dart';
-import 'package:xd/Widgets/Models/ProductThumbsNailModel.dart';
+import 'package:xd/Widgets/Models/ProductsModel.dart';
 import 'package:xd/Widgets/NavBarsAppBars/BottomNavBar.dart';
 import 'package:xd/Widgets/Slivers.dart';
 import '../konstants.dart';
-import 'Favorites.dart';
 import 'MessagesPage.dart';
+import 'package:provider/provider.dart';
 
 class ProductDetails extends StatelessWidget {
   static const id = "ProductDetails";
+
   @override
   Widget build(BuildContext context) {
+    // final favorite = Provider.of<ThumbsNailModel>(context);
+    //final productID = ModalRoute.of(context).settings.arguments as String;
+    //final firestoreProducts = Provider.of<FireStoreProducts>(context, listen: false);
+    var firestoreProducts = Provider.of<List<FireStoreProducts>>(context);
+
+    //.findById(productID);
+
     return SafeArea(
       child: Scaffold(
         bottomNavigationBar: BottomNavBar(),
@@ -24,24 +33,32 @@ class ProductDetails extends StatelessWidget {
               elevation: 3.0,
               actions: <Widget>[
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    // Navigator.push(context,
+                    //     MaterialPageRoute(builder: (context) => NewPage()));
+                  },
                   icon: Icon(
                     Icons.share,
                   ),
                 ),
                 IconButton(
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => FavoritesPage()));
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => FavoritesPage(),
+                    //   ),
+                    // );
+                    // favorite.toggleFavoriteStatus();
+                    // print(favorite.isFavorite);
                   },
-                  icon: Icon(Icons.star_border),
-                )
+                  icon: Icon(
+                      //favorite.isFavorite
+                      //? Icons.favorite
+                      //:
+                      Icons.favorite_border),
+                ),
               ],
-              iconTheme: IconThemeData().copyWith(
-                color: Colors.green,
-              ),
               title: Text(
                 "Products",
                 style: kappBarText,
@@ -50,23 +67,34 @@ class ProductDetails extends StatelessWidget {
             SliverToBoxAdapter(
               child: CarouselSlider.builder(
                   options: CarouselOptions(
-                    enlargeCenterPage: true,
-                    autoPlay: true,
+                    // enlargeCenterPage: true,
+                    autoPlay: false,
                   ),
                   itemBuilder: (BuildContext context, int index) {
                     return Container(
                       width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        image: DecorationImage(
-                          fit: BoxFit.fitWidth,
-                          image: AssetImage(
-                              productThumbsNailsModel[index].productThumbnails),
-                        ),
-                      ),
+                      // decoration: BoxDecoration(
+                      //     color: Colors.white,
+                      //     image: DecorationImage(
+                      //       fit: BoxFit.fitWidth,
+                      //        image:
+                      //       // NetworkImage(
+                      //       //   firestoreProducts[index].imageUrl,
+                      //       //   scale: 1,
+                      //       // ),
+                      //     )),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: <Widget>[
+                          CachedNetworkImage(
+                            imageUrl: firestoreProducts[index].imageUrl,
+                            progressIndicatorBuilder:
+                                (context, url, downloadProgress) =>
+                                    CircularProgressIndicator(
+                                        value: downloadProgress.progress),
+                            errorWidget: (context, url, error) =>
+                                Icon(Icons.error),
+                          ),
                           Container(
                             decoration: BoxDecoration(
                               color: Colors.black26,
@@ -82,7 +110,7 @@ class ProductDetails extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text(
-                                    productThumbsNailsModel[index].subtitle,
+                                    firestoreProducts[index].title,
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold),
@@ -106,7 +134,7 @@ class ProductDetails extends StatelessWidget {
                                         ],
                                       ),
                                       Text(
-                                        productThumbsNailsModel[index].price,
+                                        firestoreProducts[index].price,
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 11,
@@ -122,7 +150,7 @@ class ProductDetails extends StatelessWidget {
                       ),
                     );
                   },
-                  itemCount: productThumbsNailsModel.length),
+                  itemCount: firestoreProducts.length),
             ),
             SliverPadding(
               padding: EdgeInsets.all(15),
@@ -195,25 +223,25 @@ class ProductDetails extends StatelessWidget {
               ),
             ),
             SliverFixedExtentList(
-              itemExtent: 40,
-              delegate: SliverChildBuilderDelegate(
+                itemExtent: 40,
+                delegate: SliverChildBuilderDelegate(
                   (BuildContext context, int index) => SliverCard(
-                        child: ListTile(
-                          dense: true,
-                          leading: Text(
-                            productThumbsNailsModel[index].subtitle,
-                            textAlign: TextAlign.left,
-                            style: TextStyle(fontSize: 11),
-                          ),
-                          trailing: Text(
-                            productThumbsNailsModel[index].subtitle,
-                            textAlign: TextAlign.left,
-                            style: TextStyle(fontSize: 11),
-                          ),
-                        ),
+                    child: ListTile(
+                      dense: true,
+                      leading: Text(
+                        firestoreProducts[index].title,
+                        textAlign: TextAlign.left,
+                        style: TextStyle(fontSize: 11),
                       ),
-                  childCount: productThumbsNailsModel.length),
-            ),
+                      trailing: Text(
+                        firestoreProducts[index].title,
+                        textAlign: TextAlign.left,
+                        style: TextStyle(fontSize: 11),
+                      ),
+                    ),
+                  ),
+                  childCount: firestoreProducts.length,
+                )),
             SliverContainer(
               child: Card(
                 child: Padding(
@@ -405,7 +433,7 @@ class ProductDetails extends StatelessWidget {
                 ],
               ),
             ),
-            SliverListWidget()
+            //  SliverListWidget()
           ],
         ),
       ),

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:xd/Screens/CategoryListPage2.dart';
@@ -13,10 +14,18 @@ import 'package:xd/Screens/SignUpPage.dart';
 import 'package:xd/Screens/SplashScreen.dart';
 import 'package:xd/Screens/categorylist_page.dart';
 import 'package:xd/VALIDATION/SignupValidation.dart';
+import 'package:xd/Widgets/Models/ProductsModel.dart';
+
+import 'Widgets/services/FirestoreService.dart';
+import 'Widgets/services/products_provider.dart';
 import 'Widgets/Provider.dart';
 import 'Widgets/services/Authentication.dart';
 
 void main() => runApp(MyApp());
+final auth = FirebaseAuth.instance;
+final db = FireStoreService();
+FirebaseUser user;
+//bool loggedIn = user != null;
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -30,18 +39,21 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<FavoritesProvider>(
           create: (context) => FavoritesProvider(),
         ),
-        ChangeNotifierProvider<PostAdProvider>(
-          create: (context) => PostAdProvider(),
-        ),
         ChangeNotifierProvider<Authentication>(
           create: (context) => Authentication(),
         ),
         ChangeNotifierProvider<Validation>(
           create: (context) => Validation(),
         ),
-        // ChangeNotifierProvider<ThumbsNailModel>(
-        //   create: (context) => ThumbsNailModel(),
-        // ),
+        ChangeNotifierProvider.value(
+          value: Products(),
+        ),
+        StreamProvider<FirebaseUser>.value(
+          value: FirebaseAuth.instance.onAuthStateChanged,
+        ),
+        StreamProvider<List<FireStoreProducts>>.value(
+          value: db.streamProducts(),
+        )
       ],
       child: MaterialApp(
         color: Colors.green,

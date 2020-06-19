@@ -1,0 +1,28 @@
+// import 'dart:typed_data';
+
+// import 'package:flutter/cupertino.dart';
+
+// // this is the model for the dummy data i'm using with provider
+
+// class ThumbsNailModel with ChangeNotifier {
+//   ThumbsNailModel(
+//       {this.id,
+//       this.productDescription,
+//       this.subtitle,
+//       this.productThumbnails,
+//       this.price,
+//       this.isFavorite = false,
+//       this.productThumbnailsBytes});
+//   final String id;
+//   final String subtitle;
+//   final String productThumbnails;
+//   final String productDescription;
+//   final String price;
+//   bool isFavorite;
+//   Uint8List productThumbnailsBytes;
+
+//   // void toggleFavoriteStatus() {
+//   //   isFavorite = !isFavorite;
+//   //   notifyListeners();
+//   // }
+// }

@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -8,6 +10,8 @@ import 'package:xd/Widgets/Buttons/LoginButtons.dart';
 import 'package:xd/Widgets/FormFieldWidgets/LoginCustomFormField.dart';
 import 'package:xd/Widgets/services/Authentication.dart';
 import 'package:xd/konstants.dart';
+import 'package:xd/teddy/teddy_controller.dart';
+
 import 'HomePage.dart';
 import 'SignUpPage.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
@@ -17,11 +21,24 @@ String password;
 
 //final FirebaseAuth _auth = FirebaseAuth.instance;
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   static const id = "LoginPage";
   static final TextEditingController emailController = TextEditingController();
   static final TextEditingController passwordController =
       TextEditingController();
+
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  TeddyController _teddyController;
+  @override
+  initState() {
+    _teddyController = TeddyController();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<Authentication>(context);
@@ -59,14 +76,28 @@ class LoginPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
+                  // Hero(
+                  //   tag: "logo",
+                  //   child: Container(
+                  //     child: Image.asset(
+                  //       "assets/images/XPI.png",
+                  //       height: 300,
+                  //     ),
+                  //   ),
+                  // ),
                   Hero(
-                    tag: "logo",
+                    tag: "Teddy",
                     child: Container(
-                      child: Image.asset(
-                        "assets/images/XPI.png",
-                        height: 300,
-                      ),
-                    ),
+                        height: 200,
+                        padding: const EdgeInsets.only(left: 30.0, right: 30.0),
+                        child: FlareActor(
+                          "assets/images/Teddy.flr",
+                          shouldClip: false,
+                          animation: "Angry",
+                          alignment: Alignment.bottomCenter,
+                          fit: BoxFit.contain,
+                          controller: _teddyController,
+                        )),
                   ),
                   Card(
                     margin: const EdgeInsets.all(20),
@@ -84,7 +115,7 @@ class LoginPage extends StatelessWidget {
                           ),
                           kSizedboxh20,
                           CustomFormField(
-                            controller: emailController,
+                            controller: LoginPage.emailController,
                             onChanged: (String value) {
                               validate.validateEmail(value);
                             },
@@ -94,7 +125,7 @@ class LoginPage extends StatelessWidget {
                           ),
                           kSizedboxh20,
                           CustomFormField(
-                            controller: passwordController,
+                            controller: LoginPage.passwordController,
                             onChanged: (String value) {
                               validate.validatePassword(value);
                             },
@@ -124,17 +155,21 @@ class LoginPage extends StatelessWidget {
                             height: 60,
                             width: 200,
                             onTap: () async {
-                              if (validate.isValid == true) {
-                                provider.showspinner();
-                                provider
-                                    .signInWithEmailAndPassword()
-                                    .whenComplete(() {
-                                  provider.stopSpinner();
-                                  provider.success
-                                      ? showSucessSnackBar(context)
-                                      : showLoginFailedSnackBar(context);
-                                });
-                              } else {}
+                              try {
+                                if (validate.isValid == true) {
+                                  provider.showspinner();
+                                  provider
+                                      .signInWithEmailAndPassword()
+                                      .whenComplete(() {
+                                    provider.stopSpinner();
+                                    provider.success
+                                        ? showSucessSnackBar(context)
+                                        : showLoginFailedSnackBar(context);
+                                  });
+                                } else {}
+                              } catch (e) {
+                                print(e);
+                              }
                             },
                             text: Text(
                               "Sign In",
@@ -192,9 +227,10 @@ class LoginPage extends StatelessWidget {
 
 showSucessSnackBar(BuildContext context) async {
   var provider = Provider.of<Authentication>(context, listen: false);
+
   Flushbar(
     flushbarPosition: FlushbarPosition.TOP,
-    message: "Welcome$email",
+    message: "Welcome",
     showProgressIndicator: true,
     flushbarStyle: FlushbarStyle.FLOATING,
     blockBackgroundInteraction: true,

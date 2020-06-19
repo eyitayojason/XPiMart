@@ -1,0 +1,17 @@
+import 'package:firebase_picture_uploader/firebase_picture_uploader.dart';
+
+class ImagePicker {
+  void onErrorCallback(error, stackTrace) {
+    print(error);
+    print(stackTrace);
+  }
+
+  void profilePictureCallback(
+      {List<UploadJob> uploadJobs, bool pictureUploadProcessing}) {
+    try {
+      profilePictures = uploadJobs;
+    } catch (e) {}
+  }
+}
+
+List<UploadJob> profilePictures = [];

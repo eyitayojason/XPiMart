@@ -26,19 +26,3 @@ class FavoritesProvider with ChangeNotifier {
     notifyListeners();
   }
 }
-
-class PostAdProvider with ChangeNotifier {
-  List<String> category = [
-    "Vehicles & Equipment",
-    "Food",
-    "Elcetronices",
-    "Real Estate",
-    "Services",
-    "Home & Garden",
-    "Fashion",
-    "Miscelleneous"
-  ];
-  void dropdownState(newValue) {
-    category = newValue;
-  }
-}

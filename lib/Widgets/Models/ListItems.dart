@@ -7,7 +7,7 @@ class ProductsModel {
   final Function onTap;
 }
 
-final List products = [
+final List productsicon = [
   ProductsModel(
     productIcons: "assets/images/icons8-costume-100.png",
     productSubtitle: "Fashion",

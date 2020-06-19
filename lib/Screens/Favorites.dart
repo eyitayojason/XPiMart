@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import 'package:xd/Widgets/CustomSliverList.dart';
+import 'package:xd/Widgets/Models/ProductsModel.dart';
 import 'package:xd/Widgets/NavBarsAppBars/BottomNavBar.dart';
 import 'package:xd/Widgets/ProfilePageWidgets.dart';
 import 'package:xd/Widgets/Provider.dart';
-import 'package:xd/Widgets/Slivers.dart';
 
 class FavoritesPage extends StatelessWidget {
   static String id = "Favorites";
+  final String proddetailid;
+  final List<FireStoreProducts> firestoreProducts;
+
+  const FavoritesPage({Key key, this.proddetailid, this.firestoreProducts});
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +66,9 @@ class FavoritesPage extends StatelessWidget {
                 ),
               ),
             ),
-            SliverListWidget()
+            // ProductsList(
+            //     proddetailid: proddetailid,
+            //     firestoreProducts: firestoreProducts),
           ],
         ),
       ),

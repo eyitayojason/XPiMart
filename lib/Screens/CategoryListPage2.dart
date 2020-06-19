@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:xd/Screens/categorylist_page.dart';
+import 'package:xd/Widgets/CustomSliverList.dart';
 import 'package:xd/Widgets/Models/ListItems.dart';
+import 'package:xd/Widgets/Models/ProductsModel.dart';
 import 'package:xd/Widgets/NavBarsAppBars/BottomNavBar.dart';
-import 'package:xd/Widgets/Slivers.dart';
 import '../konstants.dart';
 
 class CategoryListPage2 extends StatefulWidget {
@@ -19,6 +20,10 @@ class _CategoryListPage2State extends State<CategoryListPage2> {
   List<Company> _companies = Company.getCompanies();
   List<DropdownMenuItem<Company>> _dropdownMenuItems;
   Company _selectedCompany;
+  final String proddetailid;
+  final List<FireStoreProducts> firestoreProducts;
+
+  _CategoryListPage2State({this.proddetailid, this.firestoreProducts});
 
   onChangeDropdownItem(Company selectedCompany) {
     setState(() {
@@ -111,7 +116,10 @@ class _CategoryListPage2State extends State<CategoryListPage2> {
               ),
             ),
           ),
-          SliverListWidget()
+          // ProductsList(
+          //     proddetailid: proddetailid, firestoreProducts: firestoreProducts),
+
+          // SliverListWidget()
         ],
       ),
     );

@@ -1,3 +1,4 @@
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -9,13 +10,13 @@ import 'package:xd/VALIDATION/SignupValidation.dart';
 import 'package:xd/Widgets/Buttons/LoginButtons.dart';
 import 'package:xd/Widgets/FormFieldWidgets/LoginCustomFormField.dart';
 import 'package:xd/Widgets/services/Authentication.dart';
+import 'package:xd/teddy/teddy_controller.dart';
 import '../konstants.dart';
 
 LoginScreen loginScreen = LoginScreen();
 
-class SignUpPage extends StatelessWidget {
+class SignUpPage extends StatefulWidget {
   static const id = "SignUpPage";
-
   static final TextEditingController emailController = TextEditingController();
   static final TextEditingController passwordController =
       TextEditingController();
@@ -24,6 +25,18 @@ class SignUpPage extends StatelessWidget {
   static final TextEditingController lastnameController =
       TextEditingController();
   static final TextEditingController phoneController = TextEditingController();
+
+  @override
+  _SignUpPageState createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
+  TeddyController _teddyController;
+  initState() {
+    _teddyController = TeddyController();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<Authentication>(context);
@@ -60,14 +73,28 @@ class SignUpPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+                // Hero(
+                //   tag: "logo",
+                //   child: Container(
+                //     child: Image.asset(
+                //       "assets/images/XPI.png",
+                //       height: 200,
+                //     ),
+                //   ),
+                // ),
                 Hero(
-                  tag: "logo",
+                  tag: "teddy",
                   child: Container(
-                    child: Image.asset(
-                      "assets/images/XPI.png",
                       height: 200,
-                    ),
-                  ),
+                      padding: const EdgeInsets.only(left: 30.0, right: 30.0),
+                      child: FlareActor(
+                        "assets/images/Teddy.flr",
+                        //  shouldClip: false,
+                        animation: "Angry",
+                        alignment: Alignment.bottomCenter,
+                        fit: BoxFit.contain,
+                        controller: _teddyController,
+                      )),
                 ),
                 Card(
                   margin: const EdgeInsets.all(20),
@@ -88,7 +115,7 @@ class SignUpPage extends StatelessWidget {
                         ),
                         kSizedboxh20,
                         CustomFormField(
-                          controller: emailController,
+                          controller: SignUpPage.emailController,
                           onChanged: (String value) {
                             validate.validateEmail(value);
                           },
@@ -99,7 +126,7 @@ class SignUpPage extends StatelessWidget {
                         kSizedboxh20,
                         CustomFormField(
                           errorText: validate.password.error,
-                          controller: passwordController,
+                          controller: SignUpPage.passwordController,
                           onChanged: (String value) {
                             validate.validatePassword(value);
                           },
@@ -113,7 +140,7 @@ class SignUpPage extends StatelessWidget {
                         ),
                         kSizedboxh20,
                         CustomFormField(
-                          controller: firstnameController,
+                          controller: SignUpPage.firstnameController,
                           errorText: validate.firstName.error,
                           onChanged: (String value) {
                             validate.validatefirstName(value);
@@ -124,7 +151,7 @@ class SignUpPage extends StatelessWidget {
                         kSizedboxh20,
                         CustomFormField(
                           errorText: validate.lastName.error,
-                          controller: lastnameController,
+                          controller: SignUpPage.lastnameController,
                           hidePassword: false,
                           hintText: "Last Name",
                           onChanged: (String value) {
@@ -134,7 +161,7 @@ class SignUpPage extends StatelessWidget {
                         kSizedboxh20,
                         CustomFormField(
                           errorText: validate.phoneNumber.error,
-                          controller: phoneController,
+                          controller: SignUpPage.phoneController,
                           hidePassword: false,
                           hintText: "Phone Number",
                           onChanged: (String value) {
