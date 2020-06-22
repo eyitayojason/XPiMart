@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:xd/Pages&Screens/HomePage.dart';
+import 'package:xd/Widgets/CustomSliverlist.dart';
 import 'Models/ProductsModel.dart';
 import 'Pages&Screens/CategoryListPage2.dart';
 import 'Pages&Screens/Favorites.dart';
@@ -83,6 +84,7 @@ class MyApp extends StatelessWidget {
           LoginPage.id: (context) => LoginPage(),
           SignUpPage.id: (context) => SignUpPage(),
           HomePage.id: (context) => HomePage(),
+          CustomSliverList.id: (context) => CustomSliverList().build(context),
           ProfilePage.id: (context) => ProfilePage(),
           MessagesPage.id: (context) => MessagesPage(),
           PostAdPage.id: (context) => PostAdPage(),

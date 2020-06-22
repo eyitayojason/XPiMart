@@ -12,7 +12,8 @@ import 'MessagesPage.dart';
 import 'package:provider/provider.dart';
 
 class ProductDetails extends StatelessWidget {
-  static const id = "ProductDetails";
+  static const id = '/ProductDetails';
+  // static const routeName = '/extractArguments';
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +21,8 @@ class ProductDetails extends StatelessWidget {
     var firestoreProducts = Provider.of<List<FireStoreProducts>>(
       context,
     );
+    FireStoreProducts args = ModalRoute.of(context).settings.arguments;
+    //args = firestoreProducts;
 
     return SafeArea(
       child: Scaffold(
@@ -73,7 +76,7 @@ class ProductDetails extends StatelessWidget {
                         children: <Widget>[
                           Flexible(
                             child: CachedNetworkImage(
-                              imageUrl: firestoreProducts[index].imageUrl,
+                              imageUrl: args.imageUrl,
                               fit: BoxFit.cover,
                               progressIndicatorBuilder:
                                   (context, url, downloadProgress) =>
@@ -98,7 +101,7 @@ class ProductDetails extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text(
-                                    firestoreProducts[index].title,
+                                    args.title,
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold),
@@ -122,7 +125,7 @@ class ProductDetails extends StatelessWidget {
                                         ],
                                       ),
                                       Text(
-                                        firestoreProducts[index].price,
+                                        args.price,
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 11,
@@ -217,12 +220,12 @@ class ProductDetails extends StatelessWidget {
                     child: ListTile(
                       dense: true,
                       leading: Text(
-                        firestoreProducts[index].title,
+                        args.title,
                         textAlign: TextAlign.left,
                         style: TextStyle(fontSize: 11),
                       ),
                       trailing: Text(
-                        firestoreProducts[index].title,
+                        args.title,
                         textAlign: TextAlign.left,
                         style: TextStyle(fontSize: 11),
                       ),
@@ -235,7 +238,7 @@ class ProductDetails extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.all(10.0),
                   child: Text(
-                    firestoreProducts[0].description,
+                    args.description,
                     style: TextStyle(
                       fontSize: 12,
                       letterSpacing: 0.2,

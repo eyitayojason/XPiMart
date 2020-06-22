@@ -6,8 +6,12 @@ import 'package:xd/Pages&Screens/ProductDetails.dart';
 import '../konstants.dart';
 
 class CustomSliverList {
+  static const id = "CustomSliverList";
+
   Widget build(BuildContext context) {
     var firestoreProducts = Provider.of<List<FireStoreProducts>>(context);
+    List<FireStoreProducts> args = ModalRoute.of(context).settings.arguments;
+    args = firestoreProducts;
 
     return SliverPadding(
         padding: EdgeInsets.all(8),
@@ -17,9 +21,16 @@ class CustomSliverList {
               return Stack(
                 children: <Widget>[
                   InkWell(
-                    onTap: () => Navigator.of(ctx).pushNamed(
-                      ProductDetails.id,
-                    ),
+                    onTap: () => Navigator.of(ctx).pushNamed(ProductDetails.id,
+                        arguments: FireStoreProducts(
+                          imageUrl: args[i].imageUrl,
+                          description: args[i].description,
+                          id: args[i].id,
+                          name: args[i].name,
+                          price: args[i].price,
+                          title: args[i].title,
+                          quantity: args[i].quantity,
+                        )),
                     child: Row(
                       children: <Widget>[
                         FittedBox(
@@ -31,7 +42,7 @@ class CustomSliverList {
                             alignment: Alignment.centerLeft,
                             child: Center(
                               child: CachedNetworkImage(
-                                imageUrl: firestoreProducts[i].imageUrl,
+                                imageUrl: args[i].imageUrl,
                                 filterQuality: FilterQuality.none,
                                 progressIndicatorBuilder:
                                     (context, url, downloadProgress) =>
@@ -51,7 +62,7 @@ class CustomSliverList {
                                 alignment: Alignment.topLeft,
                                 margin: EdgeInsets.only(top: 20),
                                 child: Text(
-                                  firestoreProducts[i].name,
+                                  args[i].name,
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                       fontWeight: FontWeight.w900,
@@ -71,7 +82,7 @@ class CustomSliverList {
                                 padding: EdgeInsets.only(bottom: 40),
                                 alignment: Alignment.bottomLeft,
                                 child: Text(
-                                  firestoreProducts[i].quantity,
+                                  args[i].quantity,
                                   //data["quantity"],
                                   style: TextStyle(color: Colors.green),
                                 ),
@@ -139,6 +150,6 @@ class CustomSliverList {
                   )
                 ],
               );
-            }, childCount: firestoreProducts.length)));
+            }, childCount: args.length)));
   }
 }
