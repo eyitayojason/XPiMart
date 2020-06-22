@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:xd/Widgets/Models/ListItems.dart';
+import 'package:xd/Models/ListItems.dart';
 import 'package:xd/Widgets/NavBarsAppBars/BottomNavBar.dart';
 import 'package:xd/Widgets/Slivers.dart';
 import 'CategoryListPage2.dart';

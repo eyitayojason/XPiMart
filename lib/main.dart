@@ -1,25 +1,24 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:xd/Screens/CategoryListPage2.dart';
-import 'package:xd/Screens/Favorites.dart';
-import 'package:xd/Screens/HomePage.dart';
-import 'package:xd/Screens/LoginPage.dart';
-import 'package:xd/Screens/LoginScreen.dart';
-import 'package:xd/Screens/MessagesPage.dart';
-import 'package:xd/Screens/PostAdPage.dart';
-import 'package:xd/Screens/ProductDetails.dart';
-import 'package:xd/Screens/ProfilePage.dart';
-import 'package:xd/Screens/SignUpPage.dart';
-import 'package:xd/Screens/SplashScreen.dart';
-import 'package:xd/Screens/categorylist_page.dart';
-import 'package:xd/VALIDATION/SignupValidation.dart';
-import 'package:xd/Widgets/Models/ProductsModel.dart';
-
-import 'Widgets/services/FirestoreService.dart';
-import 'Widgets/services/products_provider.dart';
-import 'Widgets/Provider.dart';
-import 'Widgets/services/Authentication.dart';
+import 'package:xd/Pages&Screens/HomePage.dart';
+import 'Models/ProductsModel.dart';
+import 'Pages&Screens/CategoryListPage2.dart';
+import 'Pages&Screens/Favorites.dart';
+import 'Pages&Screens/LoginPage.dart';
+import 'Pages&Screens/LoginScreen.dart';
+import 'Pages&Screens/MessagesPage.dart';
+import 'Pages&Screens/PostAdPage.dart';
+import 'Pages&Screens/ProductDetails.dart';
+import 'Pages&Screens/ProfilePage.dart';
+import 'Pages&Screens/SignUpPage.dart';
+import 'Pages&Screens/SplashScreen.dart';
+import 'Pages&Screens/categorylist_page.dart';
+import 'Services&Providers/Authentication.dart';
+import 'Services&Providers/FirestoreService.dart';
+import 'Services&Providers/Provider.dart';
+import 'Services&Providers/SignupValidation.dart';
+import 'Services&Providers/products_provider.dart';
 
 void main() => runApp(MyApp());
 final auth = FirebaseAuth.instance;
@@ -53,6 +52,10 @@ class MyApp extends StatelessWidget {
         ),
         StreamProvider<List<FireStoreProducts>>.value(
           value: db.streamProducts(),
+          lazy: true,
+          catchError: (context, error) {
+            return (error);
+          },
         )
       ],
       child: MaterialApp(

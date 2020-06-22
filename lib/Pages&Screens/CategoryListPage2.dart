@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:xd/Screens/categorylist_page.dart';
+import 'package:xd/Models/ListItems.dart';
+import 'package:xd/Models/ProductsModel.dart';
 import 'package:xd/Widgets/CustomSliverList.dart';
-import 'package:xd/Widgets/Models/ListItems.dart';
-import 'package:xd/Widgets/Models/ProductsModel.dart';
 import 'package:xd/Widgets/NavBarsAppBars/BottomNavBar.dart';
 import '../konstants.dart';
+import 'categorylist_page.dart';
 
 class CategoryListPage2 extends StatefulWidget {
   // CategoryListPage2({this.thumbsNailModel});
@@ -52,7 +52,9 @@ class _CategoryListPage2State extends State<CategoryListPage2> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(
+    BuildContext context,
+  ) {
     return Scaffold(
       bottomNavigationBar: BottomNavBar(),
       body: CustomScrollView(
@@ -116,10 +118,9 @@ class _CategoryListPage2State extends State<CategoryListPage2> {
               ),
             ),
           ),
-          // ProductsList(
-          //     proddetailid: proddetailid, firestoreProducts: firestoreProducts),
-
-          // SliverListWidget()
+          CustomSliverList().build(
+            context,
+          ),
         ],
       ),
     );

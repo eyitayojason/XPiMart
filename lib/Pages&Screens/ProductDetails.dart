@@ -2,9 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
+import 'package:xd/Models/ProductsModel.dart';
 import 'package:xd/Widgets/Buttons/GreenOutLineButtons.dart';
 import 'package:xd/Widgets/FormFieldWidgets/LoginCustomFormField.dart';
-import 'package:xd/Widgets/Models/ProductsModel.dart';
 import 'package:xd/Widgets/NavBarsAppBars/BottomNavBar.dart';
 import 'package:xd/Widgets/Slivers.dart';
 import '../konstants.dart';
@@ -16,12 +16,10 @@ class ProductDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final favorite = Provider.of<ThumbsNailModel>(context);
     //final productID = ModalRoute.of(context).settings.arguments as String;
-    //final firestoreProducts = Provider.of<FireStoreProducts>(context, listen: false);
-    var firestoreProducts = Provider.of<List<FireStoreProducts>>(context);
-
-    //.findById(productID);
+    var firestoreProducts = Provider.of<List<FireStoreProducts>>(
+      context,
+    );
 
     return SafeArea(
       child: Scaffold(
@@ -33,10 +31,7 @@ class ProductDetails extends StatelessWidget {
               elevation: 3.0,
               actions: <Widget>[
                 IconButton(
-                  onPressed: () {
-                    // Navigator.push(context,
-                    //     MaterialPageRoute(builder: (context) => NewPage()));
-                  },
+                  onPressed: () {},
                   icon: Icon(
                     Icons.share,
                   ),
@@ -67,33 +62,26 @@ class ProductDetails extends StatelessWidget {
             SliverToBoxAdapter(
               child: CarouselSlider.builder(
                   options: CarouselOptions(
-                    // enlargeCenterPage: true,
-                    autoPlay: false,
+                    enlargeCenterPage: true,
+                    autoPlay: true,
                   ),
                   itemBuilder: (BuildContext context, int index) {
                     return Container(
                       width: double.infinity,
-                      // decoration: BoxDecoration(
-                      //     color: Colors.white,
-                      //     image: DecorationImage(
-                      //       fit: BoxFit.fitWidth,
-                      //        image:
-                      //       // NetworkImage(
-                      //       //   firestoreProducts[index].imageUrl,
-                      //       //   scale: 1,
-                      //       // ),
-                      //     )),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: <Widget>[
-                          CachedNetworkImage(
-                            imageUrl: firestoreProducts[index].imageUrl,
-                            progressIndicatorBuilder:
-                                (context, url, downloadProgress) =>
-                                    CircularProgressIndicator(
-                                        value: downloadProgress.progress),
-                            errorWidget: (context, url, error) =>
-                                Icon(Icons.error),
+                          Flexible(
+                            child: CachedNetworkImage(
+                              imageUrl: firestoreProducts[index].imageUrl,
+                              fit: BoxFit.cover,
+                              progressIndicatorBuilder:
+                                  (context, url, downloadProgress) =>
+                                      CircularProgressIndicator(
+                                          value: downloadProgress.progress),
+                              errorWidget: (context, url, error) =>
+                                  Icon(Icons.error),
+                            ),
                           ),
                           Container(
                             decoration: BoxDecoration(
@@ -126,7 +114,7 @@ class ProductDetails extends StatelessWidget {
                                             size: 15,
                                           ),
                                           Text(
-                                            "Lagos, today, 15:51",
+                                            DateTime.now().toString(),
                                             style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 9),
@@ -247,7 +235,7 @@ class ProductDetails extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.all(10.0),
                   child: Text(
-                    "Neat 2012 Honda Accord Sedan, ac working fine car is in very good condition and ready for Family trips and great road jorneys",
+                    firestoreProducts[0].description,
                     style: TextStyle(
                       fontSize: 12,
                       letterSpacing: 0.2,
@@ -303,15 +291,9 @@ class ProductDetails extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       CircleAvatar(
-                        radius: 16,
-                        backgroundImage: AssetImage("assets/images/ppp.jpg"),
-                        backgroundColor: Colors.white,
-                        // child: Icon(
-                        //   OMIcons.accountCircle,
-                        //   color: Colors.black45,
-                        //   size: 40,
-                        // ),
-                      ),
+                          radius: 16,
+                          backgroundImage: AssetImage("assets/images/ppp.jpg"),
+                          backgroundColor: Colors.white),
                       SizedBox(
                         height: 5,
                       ),
@@ -377,7 +359,7 @@ class ProductDetails extends StatelessWidget {
                         hidePassword: false,
                         height: 40,
                         hintText: "Enter Message Here",
-                      ),
+                      ).build(context),
                       MaterialButton(
                         onPressed: () {},
                         color: Colors.amber,

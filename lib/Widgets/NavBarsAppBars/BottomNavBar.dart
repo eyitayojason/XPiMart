@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:xd/Screens/Favorites.dart';
-import 'package:xd/Screens/HomePage.dart';
-import 'package:xd/Screens/MessagesPage.dart';
-import 'package:xd/Screens/PostAdPage.dart';
-import 'package:xd/Screens/ProfilePage.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
+import 'package:xd/Pages&Screens/Favorites.dart';
+import 'package:xd/Pages&Screens/HomePage.dart';
+import 'package:xd/Pages&Screens/MessagesPage.dart';
+import 'package:xd/Pages&Screens/PostAdPage.dart';
+import 'package:xd/Pages&Screens/ProfilePage.dart';
+import 'package:xd/Services&Providers/Provider.dart';
 
 import '../../konstants.dart';
-import '../Provider.dart';
 
 final pages = [
   HomePage(),

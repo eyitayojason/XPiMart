@@ -1,17 +1,15 @@
-import 'package:flare_flutter/flare_actor.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:provider/provider.dart';
-import 'package:xd/Screens/LoginPage.dart';
-import 'package:xd/Screens/LoginScreen.dart';
-import 'package:xd/VALIDATION/SignupValidation.dart';
+import 'package:xd/Services&Providers/Authentication.dart';
+import 'package:xd/Services&Providers/SignupValidation.dart';
 import 'package:xd/Widgets/Buttons/LoginButtons.dart';
 import 'package:xd/Widgets/FormFieldWidgets/LoginCustomFormField.dart';
-import 'package:xd/Widgets/services/Authentication.dart';
-import 'package:xd/teddy/teddy_controller.dart';
 import '../konstants.dart';
+import 'LoginPage.dart';
+import 'LoginScreen.dart';
 
 LoginScreen loginScreen = LoginScreen();
 
@@ -31,9 +29,7 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  TeddyController _teddyController;
   initState() {
-    _teddyController = TeddyController();
     super.initState();
   }
 
@@ -73,29 +69,29 @@ class _SignUpPageState extends State<SignUpPage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                // Hero(
-                //   tag: "logo",
-                //   child: Container(
-                //     child: Image.asset(
-                //       "assets/images/XPI.png",
-                //       height: 200,
-                //     ),
-                //   ),
-                // ),
                 Hero(
-                  tag: "teddy",
+                  tag: "logo",
                   child: Container(
-                      height: 200,
-                      padding: const EdgeInsets.only(left: 30.0, right: 30.0),
-                      child: FlareActor(
-                        "assets/images/Teddy.flr",
-                        //  shouldClip: false,
-                        animation: "Angry",
-                        alignment: Alignment.bottomCenter,
-                        fit: BoxFit.contain,
-                        controller: _teddyController,
-                      )),
+                    child: Image.asset(
+                      "assets/images/XPI.png",
+                      height: 300,
+                    ),
+                  ),
                 ),
+                // Hero(
+                //   tag: "teddy",
+                //   child: Container(
+                //       height: 200,
+                //       padding: const EdgeInsets.only(left: 30.0, right: 30.0),
+                //       child: FlareActor(
+                //         "assets/images/Teddy.flr",
+                //         //  shouldClip: false,
+                //         animation: "Angry",
+                //         alignment: Alignment.bottomCenter,
+                //         fit: BoxFit.contain,
+                //         controller: _teddyController,
+                //       )),
+                // ),
                 Card(
                   margin: const EdgeInsets.all(20),
                   elevation: 2,
@@ -122,7 +118,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           errorText: validate.email.error,
                           hidePassword: false,
                           hintText: "Email / Phone",
-                        ),
+                        ).build(context),
                         kSizedboxh20,
                         CustomFormField(
                           errorText: validate.password.error,
@@ -132,7 +128,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           },
                           hintText: "Password",
                           hidePassword: true,
-                        ),
+                        ).build(context),
                         kSizedboxh20,
                         Text(
                           "Never disclose your password to anyone",
@@ -147,7 +143,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           },
                           hidePassword: false,
                           hintText: "First name",
-                        ),
+                        ).build(context),
                         kSizedboxh20,
                         CustomFormField(
                           errorText: validate.lastName.error,
@@ -157,7 +153,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           onChanged: (String value) {
                             validate.validatelastName(value);
                           },
-                        ),
+                        ).build(context),
                         kSizedboxh20,
                         CustomFormField(
                           errorText: validate.phoneNumber.error,
@@ -167,7 +163,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           onChanged: (String value) {
                             validate.validatePhone(value);
                           },
-                        ),
+                        ).build(context),
                         SizedBox(
                           height: 50,
                         ),

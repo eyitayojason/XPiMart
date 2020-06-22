@@ -1,17 +1,18 @@
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:xd/Screens/LoginScreen.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
-import 'package:xd/Screens/ProfilePage.dart';
-import 'package:xd/Screens/LoginPage.dart';
-import 'package:xd/Screens/SignUpPage.dart';
+import 'package:xd/Pages&Screens/LoginPage.dart';
+import 'package:xd/Pages&Screens/LoginScreen.dart';
+import 'package:xd/Pages&Screens/ProfilePage.dart';
+import 'package:xd/Pages&Screens/SignUpPage.dart';
 
 class Authentication with ChangeNotifier {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   final FirebaseAuth _auth = FirebaseAuth.instance;
   bool success = false;
   String userEmail;
+  FirebaseUser user;
   Future<FirebaseUser> signInWithEmailAndPassword() async {
     try {
       final FirebaseUser user = (await _auth.signInWithEmailAndPassword(
@@ -21,11 +22,13 @@ class Authentication with ChangeNotifier {
           .user;
       if (user != null) {
         success = true;
-        userEmail = user.email;
+        userEmail = user.email.toString();
       } else {
         success = false;
       }
-      print(user.uid);
+      print(user.uid.toString());
+      print(user.email.toString());
+      print(user.displayName);
       notifyListeners();
     } catch (e) {
       print(e);
@@ -105,14 +108,13 @@ class Authentication with ChangeNotifier {
       case FacebookLoginStatus.loggedIn:
         final FacebookAccessToken accessToken = result.accessToken;
         _showMessage('''
-   Logged in!
-      
-         Token: ${accessToken.token}
-         User id: ${accessToken.userId}
-         Expires: ${accessToken.expires}
-         Permissions: ${accessToken.permissions}
-         Declined permissions: ${accessToken.declinedPermissions}
-         ''');
+  Logged in!
+  Token: ${accessToken.token}
+  User id: ${accessToken.userId}
+  Expires: ${accessToken.expires}
+  Permissions: ${accessToken.permissions}
+  Declined permissions: ${accessToken.declinedPermissions}
+  ''');
         break;
       case FacebookLoginStatus.cancelledByUser:
         _showMessage('Login cancelled by the user.');

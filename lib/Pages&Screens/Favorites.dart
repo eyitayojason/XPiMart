@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:xd/Models/ProductsModel.dart';
+import 'package:xd/Services&Providers/Provider.dart';
 import 'package:xd/Widgets/CustomSliverList.dart';
-import 'package:xd/Widgets/Models/ProductsModel.dart';
 import 'package:xd/Widgets/NavBarsAppBars/BottomNavBar.dart';
 import 'package:xd/Widgets/ProfilePageWidgets.dart';
-import 'package:xd/Widgets/Provider.dart';
 
 class FavoritesPage extends StatelessWidget {
   static String id = "Favorites";
@@ -52,7 +52,7 @@ class FavoritesPage extends StatelessWidget {
                   top: 20,
                 ),
                 alignment: Alignment.centerLeft,
-                child: Text("There are 5 Items in your Favorites"),
+                child: Text("There are no Items in your Favorites yet"),
               ),
             ),
             //kSizedboxh10,
@@ -66,9 +66,7 @@ class FavoritesPage extends StatelessWidget {
                 ),
               ),
             ),
-            // ProductsList(
-            //     proddetailid: proddetailid,
-            //     firestoreProducts: firestoreProducts),
+            CustomSliverList().build(context)
           ],
         ),
       ),

@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:provider/provider.dart';
+import 'package:xd/Models/ProductsModel.dart';
+import 'package:xd/Services&Providers/products_provider.dart';
 import 'package:xd/Widgets/FormFieldWidgets/TextForm.dart';
 import 'package:xd/Widgets/FormfieldWidget.dart';
-import 'package:xd/Widgets/Models/ProductsModel.dart';
 import 'package:xd/Widgets/NavBarsAppBars/BottomNavBar.dart';
-import 'package:xd/Widgets/services/products_provider.dart';
 import '../konstants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'LoginScreen.dart';
@@ -141,7 +141,7 @@ class PostAdPageState extends State<PostAdPage> {
                       // ).build(context, index),
                       // kSizedboxh20,
                       TextForm(
-                        labeltext: "Title",
+                        labeltext: "FullName",
                         onChanged: (String value) {
                           title = value;
                         },
@@ -159,7 +159,7 @@ class PostAdPageState extends State<PostAdPage> {
                       ),
                       kSizedboxh20,
                       TextForm(
-                        labeltext: "Quantity",
+                        labeltext: "Price",
                         onChanged: (var value) {
                           quantity = value;
                         },
@@ -167,7 +167,7 @@ class PostAdPageState extends State<PostAdPage> {
                       ),
                       kSizedboxh20,
                       TextForm(
-                        labeltext: "Full-Name",
+                        labeltext: "Title",
                         onChanged: (String value) {
                           name = value;
                         },

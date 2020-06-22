@@ -2,9 +2,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:xd/Services&Providers/Authentication.dart';
 import 'package:xd/Widgets/NavBarsAppBars/BottomNavBar.dart';
 import 'package:xd/Widgets/ProfilePageWidgets.dart';
-import 'package:xd/Widgets/services/Authentication.dart';
 import 'package:xd/konstants.dart';
 
 DropDownVertical dropDownVertical = DropDownVertical();
@@ -14,6 +14,8 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<Authentication>(context, listen: false);
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -51,14 +53,12 @@ class ProfilePage extends StatelessWidget {
                     size: 80,
                   ),
                 ),
-                title: Text(
-                  "Jason Hayes",
-                ),
+                title: Text("Name goes here"),
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      "jhayes771@gmail.com",
+                      provider.userEmail.toString(),
                       style: TextStyle(color: Colors.black54),
                     ),
                     kSizedboxh10,
@@ -67,7 +67,7 @@ class ProfilePage extends StatelessWidget {
                       children: <Widget>[
                         Expanded(
                           child: ProfilePageFlatButton(
-                            text: "Premium Services",
+                            text: "Services",
                           ),
                         ),
                         kSizedboxw10,
@@ -86,14 +86,6 @@ class ProfilePage extends StatelessWidget {
               ),
             ),
             kSizedboxh10,
-            ErrorImage(),
-            kSizedboxh10,
-            Center(
-              child: Text(
-                "CHECK INTERNET CONNECTION",
-                style: kbottomText4,
-              ),
-            )
           ],
         ),
       ),

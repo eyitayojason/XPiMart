@@ -8,25 +8,30 @@ class FireStoreProducts {
   final String quantity;
   final String imageUrl;
   final String name;
-  FireStoreProducts(
-      {this.description,
-      this.id,
-      this.imageUrl,
-      this.price,
-      this.quantity,
-      this.title,
-      this.name});
+  //final DateTime timestamp;
+  FireStoreProducts({
+    this.description,
+    this.id,
+    this.imageUrl,
+    this.price,
+    this.quantity,
+    this.title,
+    this.name,
+    //this.timestamp
+  });
 
   factory FireStoreProducts.fromFirestore(DocumentSnapshot doc) {
     Map data = doc.data;
     return FireStoreProducts(
-        id: doc.documentID,
-        title: data["title"],
-        price: data["price"],
-        quantity: data["quantity"],
-        description: data["description"],
-        imageUrl: data["imageUrl"],
-        name: data["name"]);
+      id: doc.documentID,
+      title: data["title"],
+      price: data["price"],
+      quantity: data["quantity"],
+      description: data["description"],
+      imageUrl: data["imageUrl"],
+      name: data["name"],
+      //timestamp: data["timestamp"]
+    );
   }
 }
 

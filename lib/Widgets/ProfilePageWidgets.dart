@@ -16,16 +16,6 @@ class ProfilePageFlatButton extends StatelessWidget {
   }
 }
 
-class ErrorImage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Image.asset(
-      "assets/images/error.jpg",
-      height: 250,
-    );
-  }
-}
-
 class MessagePageAppBarButton extends StatelessWidget {
   const MessagePageAppBarButton(
       {this.onPressed, this.textColor, this.buttonText});
@@ -39,10 +29,6 @@ class MessagePageAppBarButton extends StatelessWidget {
       splashColor: Colors.transparent,
       highlightColor: Colors.transparent,
       onPressed: onPressed,
-      //  () {
-      //             provider.focus2 = true;
-      //             provider.focus1 = false;
-      //           },
       textColor: textColor,
       child: Text(buttonText),
     );

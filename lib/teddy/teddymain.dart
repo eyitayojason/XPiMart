@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/rendering.dart';
-import 'package:teddy/signin_button.dart';
-import 'package:teddy/teddy_controller.dart';
-import 'package:teddy/tracking_text_input.dart';
+import 'package:xd/teddy/signin_button.dart';
+import 'package:xd/teddy/teddy_controller.dart';
+import 'package:xd/teddy/tracking_text_input.dart';
 
 void main() => runApp(MyApp());
 
@@ -73,7 +73,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     children: <Widget>[
                       Container(
                           height: 200,
-						  padding: const EdgeInsets.only(left: 30.0, right:30.0),
+                          padding:
+                              const EdgeInsets.only(left: 30.0, right: 30.0),
                           child: FlareActor(
                             "assets/Teddy.flr",
                             shouldClip: false,

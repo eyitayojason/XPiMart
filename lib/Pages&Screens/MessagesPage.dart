@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:xd/Widgets/Models/ListItems.dart';
+import 'package:xd/Models/ListItems.dart';
 import 'package:xd/Widgets/NavBarsAppBars/BottomNavBar.dart';
 import 'package:xd/Widgets/ProfilePageWidgets.dart';
 import 'package:xd/konstants.dart';
@@ -103,7 +103,6 @@ class _MessagesPageState extends State<MessagesPage> {
             ),
             Column(
               children: <Widget>[
-                ErrorImage(),
                 SizedBox(
                   height: 20,
                 ),
